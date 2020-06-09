@@ -32,4 +32,4 @@ const mapDispatchToProps = (dispatch) => ({
   startGame: (token) => dispatch(fetchQuestions(token)),
 });
 
-export default connect(mapDispatchToProps)(Game);
+export default connect(null, mapDispatchToProps)(Game);
