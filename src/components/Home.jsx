@@ -26,10 +26,10 @@ class Home extends React.Component {
       );
   }
 
-  failedOnFetchToken() {
+  static failedOnFetchToken() {
     return (
       <div>
-        We couldn't take the questions :_(
+        We couldn't take the questions :(
       </div>
     );
   }
