@@ -28,7 +28,7 @@ class Home extends React.Component {
 
   render() {
     const { shouldRedirect, error } = this.state;
-    if (error.length !== 0) return (<div>We couldn't take the questions :(</div>);
+    if (error.length !== 0) return (<div>We failed</div>);
     else if (shouldRedirect) return (<Redirect to="/game" />);
     return (
       <div>
