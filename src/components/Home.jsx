@@ -1,9 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-import fetchQuestions from '../actions/questionsAPI';
+import {
+  fetchToken,
+  takeStorageToken as haveAnToken,
+} from '../services/tokenAPI';
 
 class Home extends React.Component {
   constructor(props) {
@@ -11,21 +12,36 @@ class Home extends React.Component {
     this.state = {
       name: '',
       email: '',
-    }
+      shouldRedirect: false,
+      error: '',
+    };
+
+    this.takeToken = this.takeToken.bind(this);
+    this.handleChangeInput = this.handleChangeInput.bind(this);
   }
 
   handleChangeInput(name, value) {
-    const 
     this.setState({
       [name]: value,
-    })
+    });
+  }
+
+  async takeToken() {
+    if (haveAnToken()) return this.setState({ shouldRedirect: true });
+    return fetchToken()
+      .then(
+        () => this.setState({ shouldRedirect: true }),
+        (error) => this.setState({ error }),
+      );
   }
 
   render() {
-    const { takeToken } = this.props;
-    console.log(this.state)
+    const { shouldRedirect, error } = this.state;
+    if (error.length !== 0) return (<div>We failed</div>);
+    else if (shouldRedirect) return (<Redirect to="/game" />);
     return (
       <div>
+        <h1>This is the <strong>Home</strong> page</h1>
         <input
           data-testid="input-player-name"
           onChange={(e) => this.handleChangeInput('name', e.target.value)}
@@ -36,25 +52,16 @@ class Home extends React.Component {
           onChange={(e) => this.handleChangeInput('email', e.target.value)}
           type="text"
         />
-        <Link
-          to="/game"
+        <button
           data-testid="btn-play"
-          onClick={() => takeToken()}
+          onClick={this.takeToken}
           type="button"
         >
           Jogar
-        </Link>
+        </button>
       </div>
     );
   }
-};
+}
 
-Home.propTypes = {
-  takeToken: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  takeToken: () => dispatch(fetchQuestions()),
-});
-
-export default connect(null, mapDispatchToProps)(Home);
+export default Home;

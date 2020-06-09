@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { takeStorageToken } from '../services/tokenAPI';
 import fetchQuestions from '../actions/questionsAPI';
 import Temporizador from './Temporizador';
 
-class Game extends React.Component{
-  componentDidUpdate(prevProps) {
-    const { token, startGame } = this.props;
-    if (prevProps.token !== token) startGame(token);
+class Game extends React.Component {
+  componentDidMount() {
+    const { startGame } = this.props;
+    startGame(takeStorageToken());
   }
 
   render() {
@@ -24,16 +25,11 @@ class Game extends React.Component{
 }
 
 Game.propTypes = {
-  token: PropTypes.string.isRequired,
   startGame: PropTypes.func.isRequired,
 };
-
-const mapStateToProps = ({ APIQuestions }) => ({
-  token: APIQuestions.token,
-});
 
 const mapDispatchToProps = (dispatch) => ({
   startGame: (token) => dispatch(fetchQuestions(token)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game);
+export default connect(null, mapDispatchToProps)(Game);
