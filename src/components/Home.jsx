@@ -26,9 +26,18 @@ class Home extends React.Component {
       );
   }
 
+  failedOnFetchToken() {
+    return (
+      <div>
+        We couldn't take the questions :_(
+      </div>
+    );
+  }
+
   render() {
     const { shouldRedirect, error } = this.state;
-    if (shouldRedirect) return (<Redirect to="/game" />);
+    if (error.length !== 0) this.failedOnFetchToken();
+    else if (shouldRedirect) return (<Redirect to="/game" />);
     return (
       <div>
         <h1>This is the <strong>Home</strong> page</h1>
