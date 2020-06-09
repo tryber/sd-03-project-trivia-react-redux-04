@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 };
 
 const questionsReducer = (state = INITIAL_STATE, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case REQUEST_QUESTIONS:
       return { ...state, loading: action.loading };
     case RECEIVE_QUESTIONS_SUCCESS:

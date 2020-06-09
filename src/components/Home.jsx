@@ -19,15 +19,16 @@ class Home extends React.Component {
 
   async takeToken() {
     if (haveAnToken()) return this.setState({ shouldRedirect: true });
-    return await fetchToken()
+    return fetchToken()
       .then(
         () => this.setState({ shouldRedirect: true }),
         (error) => this.setState({ error }),
-      )
+      );
   }
 
   render() {
-    const { shouldRedirect } = this.state;
+    const { shouldRedirect, error } = this.state;
+    if (error.length !== 0) return <div>We couldn't take the questions :_(</div>
     if (shouldRedirect) return (<Redirect to="/game" />);
     return (
       <div>
@@ -42,6 +43,6 @@ class Home extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default Home;

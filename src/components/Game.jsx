@@ -5,15 +5,13 @@ import { connect } from 'react-redux';
 import { takeStorageToken } from '../services/tokenAPI';
 import fetchQuestions from '../actions/questionsAPI';
 
-class Game extends React.Component{
+class Game extends React.Component {
   componentDidMount() {
     const { startGame } = this.props;
-    console.log(takeStorageToken())
     startGame(takeStorageToken());
   }
 
   render() {
-    console.log(this.props.questions);
     return (
       <div>
         <h1>This is the <strong>Game</strong> page</h1>
@@ -26,12 +24,8 @@ Game.propTypes = {
   startGame: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ APIQuestions }) => ({
-  questions: APIQuestions.questions,
-});
-
 const mapDispatchToProps = (dispatch) => ({
   startGame: (token) => dispatch(fetchQuestions(token)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game);
+export default connect(mapDispatchToProps)(Game);
