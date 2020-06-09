@@ -14,9 +14,7 @@ class Temporizador extends React.Component {
   timer() {
     const time = this.state.time;
     setTimeout(() => {
-      this.setState({
-        time: time - 1,
-      })
+      this.setState({ time: time - 1 });
       if (time === 0) return this.stopTimer(time);
       return this.timer();
     }, 1000);
