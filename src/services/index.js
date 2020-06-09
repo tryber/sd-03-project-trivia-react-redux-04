@@ -4,7 +4,7 @@ export const fetchQuestionsAPI = (token, qnt = 5) => (
       .json().then((json) => {
         if (response.ok) return Promise.resolve(json);
         return Promise.reject(json.message);
-      })
+      }),
     )
 );
 
