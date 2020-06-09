@@ -6,11 +6,36 @@ import { Link } from 'react-router-dom';
 import fetchQuestions from '../actions/questionsAPI';
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      email: '',
+    }
+  }
+
+  handleChangeInput(name, value) {
+    const 
+    this.setState({
+      [name]: value,
+    })
+  }
+
   render() {
     const { takeToken } = this.props;
+    console.log(this.state)
     return (
       <div>
-        <h1>This is the <strong>Home</strong> page</h1>
+        <input
+          data-testid="input-player-name"
+          onChange={(e) => this.handleChangeInput('name', e.target.value)}
+          type="text"
+        />
+        <input
+          data-testid="input-gravatar-email"
+          onChange={(e) => this.handleChangeInput('email', e.target.value)}
+          type="text"
+        />
         <Link
           to="/game"
           data-testid="btn-play"
