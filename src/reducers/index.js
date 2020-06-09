@@ -1,3 +1,4 @@
 import { combineReducers } from 'redux';
+import questionsReducer from './questionsReducer';
 
-export default combineReducers({});
+export default combineReducers({ APIQuestions: questionsReducer });
