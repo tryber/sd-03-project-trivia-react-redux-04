@@ -1,35 +1,47 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-import fetchQuestions from '../actions/questionsAPI';
+import {
+  fetchToken,
+  takeStorageToken as haveAnToken,
+} from '../services/tokenAPI';
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      shouldRedirect: false,
+      error: '',
+    };
+
+    this.takeToken = this.takeToken.bind(this);
+  }
+
+  async takeToken() {
+    if (haveAnToken()) return this.setState({ shouldRedirect: true });
+    return await fetchToken()
+      .then(
+        () => this.setState({ shouldRedirect: true }),
+        (error) => this.setState({ error }),
+      )
+  }
+
   render() {
-    const { takeToken } = this.props;
+    const { shouldRedirect } = this.state;
+    if (shouldRedirect) return (<Redirect to="/game" />);
     return (
       <div>
         <h1>This is the <strong>Home</strong> page</h1>
-        <Link
-          to="/game"
+        <button
           data-testid="btn-play"
-          onClick={() => takeToken()}
+          onClick={this.takeToken}
           type="button"
         >
           Jogar
-        </Link>
+        </button>
       </div>
     );
   }
 };
 
-Home.propTypes = {
-  takeToken: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  takeToken: () => dispatch(fetchQuestions()),
-});
-
-export default connect(null, mapDispatchToProps)(Home);
+export default Home;

@@ -2,32 +2,12 @@ import {
   REQUEST_QUESTIONS,
   RECEIVE_QUESTIONS_SUCCESS,
   RECEIVE_QUESTIONS_FAILED,
-  REQUEST_TOKEN,
-  RECEIVE_TOKEN_SUCCESS,
-  RECEIVE_TOKEN_FAILED,
 } from "../Types";
 import fetchQuestionsAPI from '../services/index';
 
 export const requestQuestions = () => ({
   type: REQUEST_QUESTIONS,
   loading: true,
-});
-
-export const requestToken = () => ({
-  type: REQUEST_TOKEN,
-  loading: true,
-});
-
-export const receiveTokenSuccess = (token) => ({
-  type: RECEIVE_TOKEN_SUCCESS,
-  loading: false,
-  token,
-});
-
-export const receiveTokenFailed = (errorMessage) => ({
-  type: RECEIVE_TOKEN_FAILED,
-  loading: false,
-  errorMessage,
 });
 
 export const receiveQuestionsSuccess = (data) => ({
@@ -44,12 +24,12 @@ export const receiveQuestionsFailed = (errorMessage) => ({
 
 export const fetchQuestions = (token) => (
   (dispatch) => {
-    dispatch(token ? requestQuestions() : requestToken());
+    dispatch(requestQuestions());
 
     return fetchQuestionsAPI(token)
       .then(
-        (data) => token ? dispatch(receiveQuestionsSuccess(data)) : dispatch(receiveTokenSuccess(data.token)),
-        (message) => token ? dispatch(receiveQuestionsFailed(message)) : dispatch(receiveTokenFailed(message)),
+        (data) => dispatch(receiveQuestionsSuccess(data)),
+        (message) => dispatch(receiveQuestionsFailed(message)),
       );
   }
 );
