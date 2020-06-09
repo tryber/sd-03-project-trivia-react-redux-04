@@ -2,7 +2,7 @@ import {
   REQUEST_QUESTIONS,
   RECEIVE_QUESTIONS_SUCCESS,
   RECEIVE_QUESTIONS_FAILED,
-} from "../Types";
+} from '../Types';
 
 const INITIAL_STATE = {
   questions: [],
