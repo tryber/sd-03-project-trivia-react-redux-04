@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import fetchQuestions from '../actions/questionsAPI';
+import Temporizador from './Temporizador';
 
 class Game extends React.Component{
   componentDidUpdate(prevProps) {
@@ -14,6 +15,9 @@ class Game extends React.Component{
     return (
       <div>
         <h1>This is the <strong>Game</strong> page</h1>
+        <div>
+          <Temporizador />
+        </div>
       </div>
     );
   }
