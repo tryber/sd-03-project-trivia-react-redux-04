@@ -1,4 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { onQuestionTimeOut } from '../actions/game';
 
 class Temporizador extends React.Component {
   constructor(props) {
@@ -21,6 +25,7 @@ class Temporizador extends React.Component {
   }
 
   stopTimer() {
+    this.props.timeOut();
     this.setState({ time: 0 });
   }
 
@@ -34,4 +39,12 @@ class Temporizador extends React.Component {
   }
 }
 
-export default Temporizador;
+Temporizador.propTypes = {
+  timeOut: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  timeOut: () => dispatch(onQuestionTimeOut()),
+});
+
+export default connect(null, mapDispatchToProps)(Temporizador);
