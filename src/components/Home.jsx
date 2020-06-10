@@ -63,12 +63,7 @@ class Home extends React.Component {
     return (
       <div>
         <h1>This is the <strong>Home</strong> page</h1>
-        <Link
-          data-testid="btn-settings"
-          to="config"
-        >
-          Configurações
-        </Link>
+        <Link data-testid="btn-settings" to="/config">Configurações</Link>
         <input
           data-testid="input-player-name"
           onChange={(e) => this.handleChangeInput('name', e.target.value)}

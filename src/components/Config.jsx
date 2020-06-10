@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 const category = [
   'General Knowledge',
@@ -44,15 +44,15 @@ export class Config extends Component {
       <div>
         <h1 data-testid="settings-title">Configurações</h1>
         <div>
-          <select onChange={(e) => this.setState({ category: e.target.value})}>
+          <select onChange={(e) => this.setState({ category: e.target.value })}>
             Categoria
         {category.map((e) => <option key={e}>{e}</option>)}
           </select>
-          <select onChange={(e) => this.setState({ difficulty: e.target.value})}>
+          <select onChange={(e) => this.setState({ difficulty: e.target.value })}>
             Dificuldade
         {difficulty.map((e) => <option key={e}>{e}</option>)}
           </select>
-          <select onChange={(e) => this.setState({ type: e.target.value})}>
+          <select onChange={(e) => this.setState({ type: e.target.value })}>
             Tipo
         {type.map((e) => <option key={e}>{e}</option>)}
           </select>
@@ -62,13 +62,12 @@ export class Config extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
 
-})
+});
 
 const mapDispatchToProps = {
 
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Config)
-
+export default connect(mapStateToProps, mapDispatchToProps)(Config);
