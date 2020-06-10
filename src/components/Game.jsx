@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import Temporizador from './Temporizador';
+import Header from './Header';
+import Alternative from './Alternative';
+
 import { takeStorageToken } from '../services/tokenAPI';
 import fetchQuestions from '../actions/questionsAPI';
-import Temporizador from './Temporizador';
-import Alternative from './Alternative';
 
 class Game extends React.Component {
   componentDidMount() {
@@ -29,6 +31,9 @@ class Game extends React.Component {
     if (!question) return <h1>Prepare-se</h1>;
     return (
       <div>
+        <div>
+          <Header />
+        </div>
         <div>
           {this.renderShuffledAlternatives()}
         </div>
