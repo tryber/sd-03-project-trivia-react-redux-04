@@ -1,23 +1,23 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import MD5 from "crypto-js/md5";
+import MD5 from 'crypto-js/md5';
 
 import {
   fetchToken,
   takeStorageToken as haveAnToken,
 } from '../services/tokenAPI';
 
-const sendToUserLocalStorage = (name, gravatarEmail) => {
+const sendToUserLocalStorage = (user, gravatarHash) => {
   const memory = {
     player: {
-      name: name,
+      name: user,
       assertions: '',
       score: '',
-      gravatarEmail: gravatarEmail,
-    }
-  }
+      gravatarEmail: gravatarHash,
+    },
+  };
   localStorage.setItem('state', JSON.stringify(memory));
-}
+};
 
 class Home extends React.Component {
   constructor(props) {
