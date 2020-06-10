@@ -6,7 +6,7 @@ import {
 
 const INITIAL_STATE = {
   questions: [],
-  loading: false,
+  loading: true,
   errorMessage: '',
 };
 
