@@ -39,7 +39,7 @@ class Temporizador extends React.Component {
   }
 }
 
-Temporizador.propTipes = {
+Temporizador.propTypes = {
   timeOut: PropTypes.func.isRequired,
 };
 

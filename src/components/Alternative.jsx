@@ -7,7 +7,7 @@ import { onAnswerdQuestion } from '../actions/game';
 const borderColor = (type) => {
   if (type === 'correct-answer') return 'rgb(6, 240, 15)';
   return 'rgb(255, 0, 0)';
-}
+};
 
 const Alternative = ({ text, type, index, onAnswerd, reveal }) => (
   <button
@@ -32,7 +32,7 @@ Alternative.defaultProps = {
   index: null,
 };
 
-const mapStateToProps = ({ game: { reveal }}) => ({
+const mapStateToProps = ({ game: { reveal } }) => ({
   reveal,
 });
 
