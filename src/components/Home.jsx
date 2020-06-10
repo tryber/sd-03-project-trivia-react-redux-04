@@ -1,16 +1,23 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import MD5 from "crypto-js/md5";
 
 import {
   fetchToken,
   takeStorageToken as haveAnToken,
 } from '../services/tokenAPI';
-import { HashGravatar } from './HashGravatar';
 
-const sendToUserLocalStorage = (name, email) => {
-  localStorage.setItem('name', name);
-  localStorage.setItem('email', email);
-} 
+const sendToUserLocalStorage = (name, gravatarEmail) => {
+  const memory = {
+    player: {
+      name: name,
+      assertions: '',
+      score: '',
+      gravatarEmail: gravatarEmail,
+    }
+  }
+  localStorage.setItem('state', JSON.stringify(memory));
+}
 
 class Home extends React.Component {
   constructor(props) {
@@ -20,6 +27,7 @@ class Home extends React.Component {
       email: '',
       shouldRedirect: false,
       error: '',
+      gravatarEmail: '',
     };
     this.takeToken = this.takeToken.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -32,14 +40,20 @@ class Home extends React.Component {
   }
 
   async takeToken() {
-    const { name, email } = this.state;
-    sendToUserLocalStorage(name, email);
+    const { name, gravatarEmail } = this.state;
+    sendToUserLocalStorage(name, gravatarEmail);
     if (haveAnToken()) return this.setState({ shouldRedirect: true });
     return fetchToken()
       .then(
         () => this.setState({ shouldRedirect: true }),
         (error) => this.setState({ error }),
       );
+  }
+
+  hashGravatar(email) {
+    this.handleChangeInput('email', email);
+    const hash = MD5(email).toString();
+    return this.setState({ gravatarEmail: `https://www.gravatar.com/avatar/${hash}` });
   }
 
   render() {
@@ -56,7 +70,7 @@ class Home extends React.Component {
         />
         <input
           data-testid="input-gravatar-email"
-          onChange={(e) => this.handleChangeInput('email', e.target.value)}
+          onChange={(e) => this.hashGravatar(e.target.value)}
           type="text"
         />
         <button
@@ -67,7 +81,6 @@ class Home extends React.Component {
         >
           Jogar
         </button>
-        <HashGravatar />
       </div>
     );
   }
