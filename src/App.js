@@ -26,7 +26,7 @@ export default function App() {
         <Route path="/ranking" component={Ranking} />
         <Route path="/game" component={Game} />
         <Route path="/feedback" component={Feedback} />
-        <Route path="config" component={Config} />
+        <Route path="/config" component={Config} />
         <Route exact path="/" component={Home} />
         <Route path="*" component={PageNotFound} />
       </Switch>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import MD5 from 'crypto-js/md5';
 
 import {
@@ -63,6 +63,7 @@ class Home extends React.Component {
     return (
       <div>
         <h1>This is the <strong>Home</strong> page</h1>
+        <Link data-testid="btn-settings" to="/config">Configurações</Link>
         <input
           data-testid="input-player-name"
           onChange={(e) => this.handleChangeInput('name', e.target.value)}
@@ -71,7 +72,7 @@ class Home extends React.Component {
         <input
           data-testid="input-gravatar-email"
           onChange={(e) => this.hashGravatar(e.target.value)}
-          type="text"
+          type="email"
         />
         <button
           disabled={(!name || !email)}
