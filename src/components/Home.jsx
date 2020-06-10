@@ -5,6 +5,12 @@ import {
   fetchToken,
   takeStorageToken as haveAnToken,
 } from '../services/tokenAPI';
+import { HashGravatar } from './HashGravatar';
+
+const sendToUserLocalStorage = (name, email) => {
+  localStorage.setItem('name', name);
+  localStorage.setItem('email', email);
+} 
 
 class Home extends React.Component {
   constructor(props) {
@@ -15,7 +21,6 @@ class Home extends React.Component {
       shouldRedirect: false,
       error: '',
     };
-
     this.takeToken = this.takeToken.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
   }
@@ -27,6 +32,8 @@ class Home extends React.Component {
   }
 
   async takeToken() {
+    const { name, email } = this.state;
+    sendToUserLocalStorage(name, email);
     if (haveAnToken()) return this.setState({ shouldRedirect: true });
     return fetchToken()
       .then(
@@ -36,7 +43,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { shouldRedirect, error } = this.state;
+    const { shouldRedirect, error, name, email } = this.state;
     if (error.length !== 0) return (<div>We failed</div>);
     else if (shouldRedirect) return (<Redirect to="/game" />);
     return (
@@ -53,12 +60,14 @@ class Home extends React.Component {
           type="text"
         />
         <button
+          disabled={(!name || !email)}
           data-testid="btn-play"
           onClick={this.takeToken}
           type="button"
         >
           Jogar
         </button>
+        <HashGravatar />
       </div>
     );
   }
