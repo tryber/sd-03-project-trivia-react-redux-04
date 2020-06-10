@@ -28,7 +28,7 @@ const category = [
   'Entertainment: Japanese Anime & Manga',
   'Entertainment: Cartoon & Animations',
 ];
-const difficulty = ['Dificuldade','easy', 'medium', 'hard'];
+const difficulty = ['Dificuldade', 'easy', 'medium', 'hard'];
 const type = ['Tipo', 'multiple', 'boolean'];
 
 export class Config extends Component {
