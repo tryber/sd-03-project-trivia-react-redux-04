@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import Temporizador from './Temporizador';
 import Header from './Header';
@@ -8,7 +9,6 @@ import Alternative from './Alternative';
 
 import { takeStorageToken } from '../services/tokenAPI';
 import fetchQuestions from '../actions/questionsAPI';
-import { Redirect } from 'react-router-dom';
 
 class Game extends React.Component {
   componentDidMount() {
