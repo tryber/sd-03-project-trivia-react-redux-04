@@ -61,13 +61,10 @@ Game.propTypes = {
     question: PropTypes.string.isRequired,
     type: PropTypes.oneOf(['multiple', 'boolean']).isRequired,
   }),
-
-  questionID: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = ({ game: { questionID }, APIQuestions: { questions } }) => ({
   question: questions[questionID],
-  questionID,
 });
 
 const mapDispatchToProps = (dispatch) => ({

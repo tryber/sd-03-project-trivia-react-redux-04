@@ -3,3 +3,5 @@ import {
 } from '../Types';
 
 export const goToNextQuestion = (id) => ({ type: NEXT_QUESTION, id });
+
+export default goToNextQuestion;
