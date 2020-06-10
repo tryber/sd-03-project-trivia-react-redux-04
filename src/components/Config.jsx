@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const category = [
+  'Categoria',
   'General Knowledge',
   'Entertainment: Books',
   'Entertainment: Film',
@@ -27,8 +28,8 @@ const category = [
   'Entertainment: Japanese Anime & Manga',
   'Entertainment: Cartoon & Animations',
 ];
-const difficulty = ['easy', 'medium', 'hard'];
-const type = ['multiple', 'boolean'];
+const difficulty = ['Dificuldade','easy', 'medium', 'hard'];
+const type = ['Tipo', 'multiple', 'boolean'];
 
 export class Config extends Component {
   constructor(props) {
@@ -57,17 +58,11 @@ export class Config extends Component {
         {type.map((e) => <option key={e}>{e}</option>)}
           </select>
         </div>
+        <button onClick={() => alert('Preencha seus dados na tela inicial!')}>Jogar</button>
+        <Link to="/">Início</Link>
       </div>
     );
   }
 }
 
-const mapStateToProps = () => ({
-
-});
-
-const mapDispatchToProps = {
-
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Config);
+export default Config;
