@@ -8,17 +8,9 @@ import Alternative from './Alternative';
 
 import { takeStorageToken } from '../services/tokenAPI';
 import fetchQuestions from '../actions/questionsAPI';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class Game extends React.Component {
-  static playAgainBtn() {
-    return (
-      <button data-testid="btn-play-again">
-        <Link to="/">Jogar Novamente</Link>
-      </button>
-    );
-  }
-
   componentDidMount() {
     const { startGame } = this.props;
     startGame(takeStorageToken());
@@ -38,7 +30,7 @@ class Game extends React.Component {
   render() {
     const { loading, question } = this.props;
     if (loading) return <h1>Prepare-se</h1>;
-    if (question === null) return <div>{this.playAgainBtn()}</div>;
+    if (question === null) return <Redirect to="/feedback" />;
     return (
       <div>
         <div>
