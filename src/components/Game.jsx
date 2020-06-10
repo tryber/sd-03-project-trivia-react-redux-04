@@ -29,6 +29,8 @@ class Game extends React.Component {
     if (!question) return <h1>Prepare-se</h1>;
     return (
       <div>
+        <div data-testid="question-category">{question.category}</div>
+        <div data-testid="question-text">{question.question}</div>
         <div>
           {this.renderShuffledAlternatives()}
         </div>
