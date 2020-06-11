@@ -13,4 +13,4 @@ export const setScore = (pts) => {
   const { score, assertions } = player;
   const updatePlayer = { ...player, score: Number(score) + pts, assertions: assertions + 1 };
   localStorage.setItem('state', JSON.stringify({ player: updatePlayer }));
-}
+};
