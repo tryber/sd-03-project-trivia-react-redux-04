@@ -10,7 +10,7 @@ class Temporizador extends React.Component {
     let { time } = this.props;
     const id = setInterval(() => {
       if (time === 0) return timeOut();
-      time -= 1
+      time -= 1;
       return setTime(time);
     }, 1000);
     sendID(id);

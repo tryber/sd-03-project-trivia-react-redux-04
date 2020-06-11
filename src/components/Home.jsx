@@ -68,11 +68,13 @@ class Home extends React.Component {
           data-testid="input-player-name"
           onChange={(e) => this.handleChangeInput('name', e.target.value)}
           type="text"
+          value={name}
         />
         <input
           data-testid="input-gravatar-email"
           onChange={(e) => this.hashGravatar(e.target.value)}
           type="email"
+          value={email}
         />
         <button
           disabled={(!name || !email)}
