@@ -7,7 +7,7 @@ import Temporizador from './Temporizador';
 import Header from './Header';
 import Alternative from './Alternative';
 
-import { takeStorageToken } from '../services/tokenAPI';
+import { takeStorageToken } from '../services/localStorageAPI';
 import fetchQuestions from '../actions/questionsAPI';
 
 class Game extends React.Component {
@@ -17,13 +17,20 @@ class Game extends React.Component {
   }
 
   renderShuffledAlternatives() {
-    const { question: { correct_answer: correct, incorrect_answers: wrongs } } = this.props;
+    const { question } = this.props;
+    const { correct_answer: correct, incorrect_answers: wrongs, difficulty } = question;
     const wrongBtns = wrongs.map((answer, index) => (
-      <Alternative key={answer} type="wrong-answer" index={index} text={answer} />
+      <Alternative
+        key={answer}
+        type="wrong-answer"
+        index={index}
+        text={answer}
+        difficult={difficulty}
+      />
     ));
     return [
       ...wrongBtns,
-      <Alternative key={correct} type="correct-answer" text={correct} />,
+      <Alternative key={correct} type="correct-answer" text={correct} difficult={difficulty} />,
     ].sort(() => Math.floor(Math.random() * 3) - 1);
   }
 
