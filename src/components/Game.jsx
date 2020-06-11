@@ -33,6 +33,8 @@ class Game extends React.Component {
     if (question === null) return <Redirect to="/feedback" />;
     return (
       <div>
+        <div data-testid="question-category">{question.category}</div>
+        <div data-testid="question-text">{question.question}</div>
         <div>
           <Header />
         </div>
