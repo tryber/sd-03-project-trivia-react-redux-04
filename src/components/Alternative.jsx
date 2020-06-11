@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { onAnswerdQuestion, stopTime } from '../actions/game';
+import { onAnswerdQuestion } from '../actions/game';
 
 import { setScore } from '../services/localStorageAPI';
 
