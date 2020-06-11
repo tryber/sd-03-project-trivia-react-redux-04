@@ -2,35 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { onQuestionTimeOut } from '../actions/game';
+import { stopTime, setTimerValue } from '../actions/game';
 
 class Temporizador extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { time: 30 };
-    this.stopTimer = this.stopTimer.bind(this);
-  }
-
   componentDidMount() {
     this.timer();
   }
 
   timer() {
-    const time = this.state.time;
+    const { time, setTime, timeOUT } = this.props;
     setTimeout(() => {
-      this.setState({ time: time - 1 });
-      if (time === 0) return this.stopTimer(time);
+      if (time === 0) return timeOUT(0);
+      setTime(time - 1);
       return this.timer();
     }, 1000);
   }
 
-  stopTimer() {
-    this.props.timeOut();
-    this.setState({ time: 0 });
-  }
-
   render() {
-    const time = this.state.time;
+    const { time } = this.props;
     return (
       <div>
         <h3>Tempo: {time}</h3>
@@ -40,11 +29,16 @@ class Temporizador extends React.Component {
 }
 
 Temporizador.propTypes = {
-  timeOut: PropTypes.func.isRequired,
+  time: PropTypes.number.isRequired,
+  timeOUT: PropTypes.func.isRequired,
+  setTime: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = ({ game: { time } }) => ({ time });
+
 const mapDispatchToProps = (dispatch) => ({
-  timeOut: () => dispatch(onQuestionTimeOut()),
+  timeOUT: () => dispatch(stopTime()),
+  setTime: (time) => dispatch(setTimerValue(time)),
 });
 
-export default connect(null, mapDispatchToProps)(Temporizador);
+export default connect(mapStateToProps, mapDispatchToProps)(Temporizador);

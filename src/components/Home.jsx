@@ -5,7 +5,7 @@ import MD5 from 'crypto-js/md5';
 import {
   fetchToken,
   takeStorageToken as haveAnToken,
-} from '../services/tokenAPI';
+} from '../services/localStorageAPI';
 
 const sendToUserLocalStorage = (user, gravatarHash) => {
   const memory = {
