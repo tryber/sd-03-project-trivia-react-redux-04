@@ -2,20 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { stopTime, setTimerValue } from '../actions/game';
+import { stopTime, setTimerValue, timeID } from '../actions/game';
 
 class Temporizador extends React.Component {
   componentDidMount() {
-    this.timer();
+    const { setTime, timeOut, sendID } = this.props;
+    let { time } = this.props;
+    const id = setInterval(() => {
+      if (time === 0) return timeOut();
+      time -= 1
+      setTime(time);
+    }, 1000);
+    sendID(id);
   }
 
   timer() {
-    const { time, setTime, timeOUT } = this.props;
-    setTimeout(() => {
-      if (time === 0) return timeOUT(0);
-      setTime(time - 1);
-      return this.timer();
-    }, 1000);
+
   }
 
   render() {
@@ -30,15 +32,16 @@ class Temporizador extends React.Component {
 
 Temporizador.propTypes = {
   time: PropTypes.number.isRequired,
-  timeOUT: PropTypes.func.isRequired,
+  timeOut: PropTypes.func.isRequired,
   setTime: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ game: { time } }) => ({ time });
 
 const mapDispatchToProps = (dispatch) => ({
-  timeOUT: () => dispatch(stopTime()),
+  timeOut: () => dispatch(stopTime()),
   setTime: (time) => dispatch(setTimerValue(time)),
+  sendID: (id) => dispatch(timeID(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Temporizador);

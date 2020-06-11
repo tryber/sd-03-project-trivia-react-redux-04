@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { onAnswerdQuestion } from '../actions/game';
+import { onAnswerdQuestion, stopTime } from '../actions/game';
 
 import { setScore } from '../services/localStorageAPI';
 
@@ -53,7 +53,7 @@ const mapStateToProps = ({ game: { reveal, time } }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onAnswerd: () => dispatch(onAnswerdQuestion()),
+  onAnswerd: () => dispatch(onAnswerdQuestion()), // time is stopped together
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Alternative);
