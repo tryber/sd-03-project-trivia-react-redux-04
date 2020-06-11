@@ -11,13 +11,9 @@ class Temporizador extends React.Component {
     const id = setInterval(() => {
       if (time === 0) return timeOut();
       time -= 1
-      setTime(time);
+      return setTime(time);
     }, 1000);
     sendID(id);
-  }
-
-  timer() {
-
   }
 
   render() {
@@ -34,6 +30,7 @@ Temporizador.propTypes = {
   time: PropTypes.number.isRequired,
   timeOut: PropTypes.func.isRequired,
   setTime: PropTypes.func.isRequired,
+  sendID: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ game: { time } }) => ({ time });

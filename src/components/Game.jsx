@@ -25,7 +25,7 @@ class Game extends React.Component {
         type="wrong-answer"
         index={index}
         text={answer}
-        difficulty={difficulty}
+        difficult={difficulty}
       />
     ));
     return [
