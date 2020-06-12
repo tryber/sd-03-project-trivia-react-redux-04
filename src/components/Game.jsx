@@ -35,10 +35,6 @@ class Game extends React.Component {
     ].sort(() => Math.floor(Math.random() * 3) - 1);
   }
 
-  showNextButton () {
-    
-  }
-
   render() {
     const { loading, question } = this.props;
     if (loading) return <h1>Prepare-se</h1>;
