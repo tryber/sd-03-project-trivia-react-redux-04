@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom';
 import Temporizador from './Temporizador';
 import Header from './Header';
 import Alternative from './Alternative';
+import NextButton from './NextButton';
 
 import { takeStorageToken } from '../services/tokenAPI';
 import fetchQuestions from '../actions/questionsAPI';
@@ -33,13 +34,16 @@ class Game extends React.Component {
     if (question === null) return <Redirect to="/feedback" />;
     return (
       <div>
-        <div data-testid="question-category">{question.category}</div>
-        <div data-testid="question-text">{question.question}</div>
         <div>
           <Header />
         </div>
+        <div data-testid="question-category">{question.category}</div>
+        <div data-testid="question-text">{question.question}</div>
         <div>
           {this.renderShuffledAlternatives()}
+        </div>
+        <div>
+          <NextButton />
         </div>
         <div>
           <Temporizador />
