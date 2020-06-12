@@ -6,8 +6,9 @@ import { goToNextQuestion } from '../actions/game';
 
 class NextButton extends React.Component {
   render() {
-    const { goToNext } = this.props;
+    const { goToNext, reveal } = this.props;
 
+    if (!reveal) return null;
     return (
       <button
         data-testid="btn-next"
@@ -22,6 +23,7 @@ class NextButton extends React.Component {
 
 const mapStateToProps = (state) => ({
   id: state.game.questionID,
+  reveal: state.game.reveal,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -31,6 +33,7 @@ const mapDispatchToProps = (dispatch) => ({
 NextButton.propTypes = {
   goToNext: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
+  reveal: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NextButton);
