@@ -1,0 +1,39 @@
+.initial-page-game {
+  background-color: aqua;
+  border: groove;
+  border-radius: 24px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  width: 40%;
+}
+
+.input-user {
+  border-radius: 500px;
+  margin-bottom: 2%;
+}
+
+.btn {
+  animation: shake infinite 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

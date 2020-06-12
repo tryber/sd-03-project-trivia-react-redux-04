@@ -5,6 +5,7 @@ const Header = () => {
   return (
     <div>
       <img
+        className="rounded-circle"
         alt="player"
         data-testid="header-profile-picture"
         src={gravatarEmail}
