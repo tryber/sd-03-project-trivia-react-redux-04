@@ -7,16 +7,16 @@ import { goToNextQuestion } from '../actions/game';
 class NextButton extends React.Component {
   render() {
     const { goToNext } = this.props;
-    
+
     return (
       <button
-      data-testid="btn-next"
-      type="button"
-      onClick={goToNext}
-    >
-      Próxima
-    </button>
-    )
+        data-testid="btn-next"
+        type="button"
+        onClick={goToNext}
+      >
+        Próxima
+      </button>
+    );
   }
 }
 
@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 NextButton.propTypes = {
   goToNext: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
+  // type: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NextButton);

@@ -17,7 +17,6 @@ const gameReducer = (state = INITIAL_STATE, action) => {
         questionID: action.id,
         reveal: false,
       };
-    case TIME_OUT:
     case ANSWERD_QUESTION:
       return { ...state, reveal: true };
     default: return state;
