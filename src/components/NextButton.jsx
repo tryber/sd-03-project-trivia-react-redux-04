@@ -12,7 +12,7 @@ class NextButton extends React.Component {
       <button
         data-testid="btn-next"
         type="button"
-        onClick={goToNext}
+        onClick={goToNext(this.props.id)}
       >
         Próxima
       </button>
@@ -21,11 +21,11 @@ class NextButton extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  id: state.gameReducer.questionID,
+  id: state.game.questionID,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  goToNext: () => dispatch(goToNextQuestion()),
+  goToNext: (id) => (() => dispatch(goToNextQuestion(id))),
 });
 
 NextButton.propTypes = {
