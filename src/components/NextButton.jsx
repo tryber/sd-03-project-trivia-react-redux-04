@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 NextButton.propTypes = {
   goToNext: PropTypes.func.isRequired,
-  // type: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NextButton);
