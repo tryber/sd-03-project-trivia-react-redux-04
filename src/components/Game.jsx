@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom';
 import Temporizador from './Temporizador';
 import Header from './Header';
 import Alternative from './Alternative';
+import './CSS_Components/Game.css';
 
 import { takeStorageToken } from '../services/localStorageAPI';
 import fetchQuestions from '../actions/questionsAPI';
@@ -36,16 +37,16 @@ class Game extends React.Component {
 
   render() {
     const { loading, question } = this.props;
-    if (loading) return <h1>Prepare-se</h1>;
+    if (loading) return <h1 className="goo">Prepare-se</h1>;
     if (question === null) return <Redirect to="/feedback" />;
     return (
-      <div>
-        <div data-testid="question-category">{question.category}</div>
-        <div data-testid="question-text">{question.question}</div>
+      <div className="game-content">
         <div>
           <Header />
         </div>
-        <div>
+        <div className="category" data-testid="question-category">{question.category}</div>
+        <div className="question" data-testid="question-text">{question.question}</div>
+        <div className="alternative">
           {this.renderShuffledAlternatives()}
         </div>
         <div>

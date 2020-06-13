@@ -1,9 +1,10 @@
 import React from 'react';
+import './CSS_Components/Header.css';
 
 const Header = () => {
   const { name, gravatarEmail } = JSON.parse(localStorage.getItem('state')).player;
   return (
-    <div>
+    <div className="card-body header-component border-secondary">
       <img
         className="rounded-circle"
         alt="player"

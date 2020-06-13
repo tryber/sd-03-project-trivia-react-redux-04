@@ -64,12 +64,13 @@ class Home extends React.Component {
     else if (shouldRedirect) return (<Redirect to="/game" />);
     return (
       <div className="card-body initial-page-game border-secondary">
-        <h1 className="card-header">This is the <strong>Home</strong> page</h1>
+        <h1 className="card-header"><strong>MANIREACT</strong></h1>
         <Link className="text-dark" data-testid="btn-settings" to="/config">Configurações</Link>
         <input
           className="input-user"
           data-testid="input-player-name"
-          onChange={(e) => this.handleChangeInput('name', e.target.value)}
+          onChange={(e) => this.handleChangeInput('name', e.target.value.toLocaleUpperCase())}
+          placeholder="NOME"
           type="text"
           value={name}
         />
@@ -77,11 +78,12 @@ class Home extends React.Component {
           className="input-user"
           data-testid="input-gravatar-email"
           onChange={(e) => this.hashGravatar(e.target.value)}
+          placeholder="EMAIL"
           type="email"
           value={email}
         />
         <button
-          className="btn btn-outline-dark btn-sm"
+          className="btn-play btn-outline-dark btn-sm"
           disabled={(!name || !email)}
           data-testid="btn-play"
           onClick={this.takeToken}

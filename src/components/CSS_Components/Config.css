@@ -1,0 +1,19 @@
+.config {
+  background-color: aqua;
+  border-radius: 24px;
+  margin: auto;
+  margin-top: 5%;
+  width: 50%;
+  -webkit-box-shadow: 9px 7px 5px rgba(107, 83, 50, 0.77);
+}
+
+.selects {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+
+.inputs {
+  border-radius: 10px;
+}

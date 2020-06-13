@@ -1,0 +1,9 @@
+.raking {
+  background-color: aqua;
+  border-radius: 24px;
+  height: auto;
+  margin: auto;
+  margin-top: 5%;
+  width: 40%;
+  -webkit-box-shadow: 9px 7px 5px rgba(107, 83, 50, 0.77);
+}

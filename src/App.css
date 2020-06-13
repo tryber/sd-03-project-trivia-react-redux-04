@@ -34,6 +34,7 @@
   margin: auto;
   margin-top: 3%;
   width: 90%;
+  -webkit-box-shadow: 9px 7px 5px rgba(107, 83, 50, 0.77);
 }
 
 .App-link {
