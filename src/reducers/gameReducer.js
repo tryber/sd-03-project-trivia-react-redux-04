@@ -15,7 +15,12 @@ const INITIAL_STATE = {
 
 const gameReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case NEXT_QUESTION: return { ...state, questionID: action.id, reveal: false };
+    case NEXT_QUESTION:
+      return {
+        ...state,
+        questionID: action.id,
+        reveal: false,
+      };
     case ANSWERD_QUESTION:
     case STOP_TIME: clearInterval(state.id);
       return { ...state, reveal: true };

@@ -10,7 +10,7 @@ export const onAnswerdQuestion = (type) => ({ type: ANSWERD_QUESTION, questionTy
 
 export const stopTime = () => ({ type: STOP_TIME });
 
-export const goToNextQuestion = (id) => ({ type: NEXT_QUESTION, id });
+export const goToNextQuestion = (id) => ({ type: NEXT_QUESTION, id: id + 1 });
 
 export const setTimerValue = (time) => ({ type: SET_TIME_VALUE, time });
 
