@@ -11,6 +11,7 @@ class Temporizador extends React.Component {
 
   componentWillReceiveProps(status) {
     if (this.props.status !== status.status) return this.timerUpdate();
+    return null;
   }
 
   timerUpdate() {

@@ -62,6 +62,7 @@ class Home extends React.Component {
     const { name, email } = this.state;
     return (
       <div className="card-body initial-page-game border-secondary">
+        <h1 className="card-header"><strong>MANIREACT</strong></h1>
         <Link className="text-dark" data-testid="btn-settings" to="/config">Configurações</Link>
         <input
           className="input-user"
@@ -96,7 +97,6 @@ class Home extends React.Component {
     else if (shouldRedirect) return (<Redirect to="/game" />);
     return (
       <div>
-        <h1 className="card-header"><strong>MANIREACT</strong></h1>
         {this.renderComponent()}
       </div>
     );
