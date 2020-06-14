@@ -6,8 +6,16 @@ import { stopTime, setTimerValue, timeID } from '../actions/game';
 
 class Temporizador extends React.Component {
   componentDidMount() {
+    this.timerUpdate();
+  }
+
+  componentWillReceiveProps(status) {
+    if (this.props.status !== status.status) return this.timerUpdate();
+  }
+
+  timerUpdate() {
     const { setTime, timeOut, sendID } = this.props;
-    let { time } = this.props;
+    let time = 30;
     const id = setInterval(() => {
       if (time === 0) return timeOut();
       time -= 1;

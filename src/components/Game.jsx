@@ -7,6 +7,7 @@ import Temporizador from './Temporizador';
 import Header from './Header';
 import Alternative from './Alternative';
 import './CSS_Components/Game.css';
+import NextButton from './NextButton';
 
 import { takeStorageToken } from '../services/localStorageAPI';
 import fetchQuestions from '../actions/questionsAPI';
@@ -50,7 +51,10 @@ class Game extends React.Component {
           {this.renderShuffledAlternatives()}
         </div>
         <div>
-          <Temporizador />
+          <NextButton />
+        </div>
+        <div>
+          <Temporizador status={question.question} />
         </div>
       </div>
     );
