@@ -11,9 +11,9 @@ const Ranking = () => {
       <h1 data-testid="ranking-title">This is the Ranking page</h1>
       <table>
         <tbody>
-        {sortedRank.map(({ name, picture, score }, index) => (
-          <RankPlayer key={name} url={picture} name={name} score={score} index={index} />
-        ))}
+          {sortedRank.map(({ name, picture, score }, index) => (
+            <RankPlayer key={name} url={picture} name={name} score={score} index={index} />
+          ))}
         </tbody>
       </table>
       <Link to={'/'}>
