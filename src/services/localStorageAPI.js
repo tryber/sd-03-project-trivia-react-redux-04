@@ -20,6 +20,6 @@ export const sendScoreBoard = () => {
   const ranking = JSON.parse(localStorage.getItem('ranking')) || [];
   localStorage.setItem(
     'ranking',
-    [...ranking, JSON.stringify({ name, score, picture: gravatarEmail })],
+    JSON.stringify([...ranking, { name, score, picture: gravatarEmail }]),
   );
 };

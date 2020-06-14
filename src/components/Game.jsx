@@ -11,12 +11,12 @@ import NextButton from './NextButton';
 import { takeStorageToken, sendScoreBoard } from '../services/localStorageAPI';
 import fetchQuestions from '../actions/questionsAPI';
 
-class Game extends React.Component {
-  static endGame() {
-    sendScoreBoard();
-    return <Redirect to="/feedback" />;
-  }
+const endGame = () => {
+  sendScoreBoard();
+  return <Redirect to="/feedback" />;
+};
 
+class Game extends React.Component {
   componentDidMount() {
     const { startGame } = this.props;
     startGame(takeStorageToken());
@@ -44,7 +44,7 @@ class Game extends React.Component {
   render() {
     const { loading, question } = this.props;
     if (loading) return <h1>Prepare-se</h1>;
-    else if (question === null) return this.endGame();
+    else if (question === null) return endGame();
     return (
       <div>
         <div>
