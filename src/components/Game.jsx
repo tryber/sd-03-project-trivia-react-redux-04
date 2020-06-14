@@ -8,10 +8,15 @@ import Header from './Header';
 import Alternative from './Alternative';
 import NextButton from './NextButton';
 
-import { takeStorageToken } from '../services/localStorageAPI';
+import { takeStorageToken, sendScoreBoard } from '../services/localStorageAPI';
 import fetchQuestions from '../actions/questionsAPI';
 
 class Game extends React.Component {
+  static endGame() {
+    sendScoreBoard();
+    return <Redirect to="/feedback" />;
+  }
+
   componentDidMount() {
     const { startGame } = this.props;
     startGame(takeStorageToken());
@@ -29,6 +34,7 @@ class Game extends React.Component {
         difficult={difficulty}
       />
     ));
+
     return [
       ...wrongBtns,
       <Alternative key={correct} type="correct-answer" text={correct} difficult={difficulty} />,
@@ -38,7 +44,7 @@ class Game extends React.Component {
   render() {
     const { loading, question } = this.props;
     if (loading) return <h1>Prepare-se</h1>;
-    if (question === null) return <Redirect to="/feedback" />;
+    else if (question === null) return this.endGame();
     return (
       <div>
         <div>

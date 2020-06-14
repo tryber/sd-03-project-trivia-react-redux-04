@@ -14,3 +14,12 @@ export const setScore = (pts) => {
   const updatePlayer = { ...player, score: Number(score) + pts, assertions: assertions + 1 };
   localStorage.setItem('state', JSON.stringify({ player: updatePlayer }));
 };
+
+export const sendScoreBoard = () => {
+  const { name, score, gravatarEmail } = JSON.parse(localStorage.getItem('state')).player;
+  const ranking = JSON.parse(localStorage.getItem('ranking')) || [];
+  localStorage.setItem(
+    'ranking',
+    [...ranking, JSON.stringify({ name, score, picture: gravatarEmail })],
+  );
+};
