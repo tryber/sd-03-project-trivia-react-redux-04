@@ -11,7 +11,12 @@ const Feedback = () => (
     <div className="feedback-component">
       <h1>This is the <strong>Feedback</strong> page</h1>
       <Link to="/">
-        <button className="btn btn-outline-dark" data-testid="btn-play-again">Jogar Novamente</button>
+        <button
+          className="btn btn-outline-dark"
+          data-testid="btn-play-again"
+        >
+          Jogar Novamente
+        </button>
       </Link>
       <Link to={'/ranking'}>
         <button className="btn btn-outline-danger" data-testid="btn-ranking">Ver Ranking</button>

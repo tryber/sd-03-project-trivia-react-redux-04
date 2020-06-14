@@ -58,10 +58,8 @@ class Home extends React.Component {
     return this.setState({ gravatarEmail: `https://www.gravatar.com/avatar/${hash}` });
   }
 
-  render() {
-    const { shouldRedirect, error, name, email } = this.state;
-    if (error.length !== 0) return (<div>We failed</div>);
-    else if (shouldRedirect) return (<Redirect to="/game" />);
+  renderComponent() {
+    const { name, email } = this.state;
     return (
       <div className="card-body initial-page-game border-secondary">
         <h1 className="card-header"><strong>MANIREACT</strong></h1>
@@ -91,6 +89,17 @@ class Home extends React.Component {
         >
           Jogar
         </button>
+      </div>
+    );
+  }
+
+  render() {
+    const { shouldRedirect, error } = this.state;
+    if (error.length !== 0) return (<div>We failed</div>);
+    else if (shouldRedirect) return (<Redirect to="/game" />);
+    return (
+      <div>
+        {this.renderComponent()}
       </div>
     );
   }

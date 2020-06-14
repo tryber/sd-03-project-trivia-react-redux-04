@@ -39,6 +39,7 @@ Temporizador.propTypes = {
   timeOut: PropTypes.func.isRequired,
   setTime: PropTypes.func.isRequired,
   sendID: PropTypes.func.isRequired,
+  status: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({ game: { time } }) => ({ time });

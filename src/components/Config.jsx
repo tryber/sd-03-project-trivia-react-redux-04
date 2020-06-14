@@ -50,7 +50,7 @@ export class Config extends Component {
             Categoria
         {category.map((e) => <option key={e}>{e}</option>)}
           </select>
-          <select className="inputs" onChange={(e) => this.setState({ difficulty: e.target.value })}>
+          <select className="inpt" onChange={(e) => this.setState({ difficulty: e.target.value })}>
             Dificuldade
         {difficulty.map((e) => <option key={e}>{e}</option>)}
           </select>
@@ -59,9 +59,12 @@ export class Config extends Component {
         {type.map((e) => <option key={e}>{e}</option>)}
           </select>
         </div>
-        <button 
-        className="btn btn-play btn-outline-dark" 
-        onClick={() => alert('Preencha seus dados na tela inicial!')}>Jogar</button>
+        <button
+          className="btn btn-play btn-outline-dark" 
+          onClick={() => alert('Preencha seus dados na tela inicial!')}
+        >
+          Jogar
+        </button>
         <Link className="text-dark" to="/">Início</Link>
       </div>
     );
