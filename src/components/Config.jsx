@@ -60,7 +60,7 @@ export class Config extends Component {
           </select>
         </div>
         <button
-          className="btn btn-play btn-outline-dark" 
+          className="btn btn-play btn-outline-dark"
           onClick={() => alert('Preencha seus dados na tela inicial!')}
         >
           Jogar
