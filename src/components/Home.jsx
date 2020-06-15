@@ -41,12 +41,6 @@ class Home extends React.Component {
       );
   }
 
-  hashGravatar(email) {
-    this.handleChangeInput('email', email);
-    const hash = MD5(email).toString();
-    return this.setState({ gravatarEmail: `https://www.gravatar.com/avatar/${hash}` });
-  }
-
   renderComponent() {
     const { name, email } = this.state;
     return (
