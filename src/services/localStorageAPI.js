@@ -8,22 +8,25 @@ export const fetchToken = async () => (
 
 export const takeStorageToken = () => localStorage.getItem('token');
 
-export const createPlayerInLocalStorage = (user, gravatarEmail) => {
-  const memory = {
-    player: { name: user, assertions: 0, score: 0, gravatarEmail },
-  };
-  localStorage.setItem('state', JSON.stringify(memory));
+export const INITIAL_STORAGE_STATE = {
+  player: { name: '', assertions: 0, score: 0, gravatarEmail: '' },
+};
+
+export const createPlayerInLocalStorage = (name, gravatarEmail) => {
+  const player = { ...INITIAL_STORAGE_STATE.player, gravatarEmail, name };
+  localStorage.setItem('state', JSON.stringify({ player }));
 };
 
 export const setScore = (pts) => {
-  const player = JSON.parse(localStorage.getItem('state')).player;
+  const player = (JSON.parse(localStorage.getItem('state')) || INITIAL_STORAGE_STATE).player;
   const { score, assertions } = player;
   const updatePlayer = { ...player, score: Number(score) + pts, assertions: assertions + 1 };
   localStorage.setItem('state', JSON.stringify({ player: updatePlayer }));
 };
 
 export const sendScoreBoard = () => {
-  const { name, score, gravatarEmail } = JSON.parse(localStorage.getItem('state')).player;
+  const state = JSON.parse(localStorage.getItem('state')) || INITIAL_STORAGE_STATE;
+  const { name, score, gravatarEmail } = state.player;
   const ranking = JSON.parse(localStorage.getItem('ranking')) || [];
   localStorage.setItem(
     'ranking',
