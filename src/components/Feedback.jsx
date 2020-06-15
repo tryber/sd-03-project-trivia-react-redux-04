@@ -30,7 +30,7 @@ const Feedback = () => (
         >
           Jogar Novamente
         </button>
-      </Link>
+      </Link> 
       <Link to={'/ranking'}>
         <button className="btn btn-outline-danger" data-testid="btn-ranking">Ver Ranking</button>
       </Link>
