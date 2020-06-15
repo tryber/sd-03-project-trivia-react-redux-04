@@ -38,7 +38,7 @@ const Feedback = () => {
         </Link>
       </div>
     </div>
-  )
+  );
 };
 
 export default Feedback;
