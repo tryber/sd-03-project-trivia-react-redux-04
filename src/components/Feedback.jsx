@@ -16,12 +16,14 @@ const Feedback = () => (
       <Header shouldShowScore />
     </div>
     <div className="feedback-component">
+
       <h1><strong>Feedback</strong></h1>
       <div>
         <h3 data-testid="feedback-text">{feedbackText()}</h3>
         <h4 data-testid="feedback-total-score">Pontuação {score}</h4>
         <h4 data-testid="feedback-total-question">Acertos {assertions}</h4>
       </div>
+      <h1><strong>Feedback</strong></h1>
       <Link to="/">
         <button
           className="btn btn-outline-dark"

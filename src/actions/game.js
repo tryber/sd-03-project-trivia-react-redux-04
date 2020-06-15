@@ -6,7 +6,7 @@ import {
   SEND_TIME_ID,
 } from '../Types';
 
-export const onAnswerdQuestion = (type) => ({ type: ANSWERD_QUESTION, questionType: type });
+export const onAnswerdQuestion = () => ({ type: ANSWERD_QUESTION });
 
 export const stopTime = () => ({ type: STOP_TIME });
 

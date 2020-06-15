@@ -1,0 +1,12 @@
+.header-component {
+  align-items: center;
+  background-color: darkgray;
+  border-bottom: groove;
+  border-radius: 24px;
+  color: black;
+  cursor: pointer;
+  display: flex;
+  height: 90px;
+  justify-content: space-between;
+  margin: auto;
+}
