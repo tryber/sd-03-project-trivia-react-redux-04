@@ -8,9 +8,25 @@ export const fetchToken = async () => (
 
 export const takeStorageToken = () => localStorage.getItem('token');
 
+export const createPlayerInLocalStorage = (user, gravatarEmail) => {
+  const memory = {
+    player: { name: user, assertions: 0, score: 0, gravatarEmail },
+  };
+  localStorage.setItem('state', JSON.stringify(memory));
+};
+
 export const setScore = (pts) => {
   const player = JSON.parse(localStorage.getItem('state')).player;
   const { score, assertions } = player;
   const updatePlayer = { ...player, score: Number(score) + pts, assertions: assertions + 1 };
   localStorage.setItem('state', JSON.stringify({ player: updatePlayer }));
+};
+
+export const sendScoreBoard = () => {
+  const { name, score, gravatarEmail } = JSON.parse(localStorage.getItem('state')).player;
+  const ranking = JSON.parse(localStorage.getItem('ranking')) || [];
+  localStorage.setItem(
+    'ranking',
+    JSON.stringify([...ranking, { name, score, picture: gravatarEmail }]),
+  );
 };

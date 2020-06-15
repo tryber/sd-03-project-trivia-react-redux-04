@@ -6,11 +6,11 @@ import {
   SEND_TIME_ID,
 } from '../Types';
 
-export const onAnswerdQuestion = (type) => ({ type: ANSWERD_QUESTION, questionType: type });
+export const onAnswerdQuestion = () => ({ type: ANSWERD_QUESTION });
 
 export const stopTime = () => ({ type: STOP_TIME });
 
-export const goToNextQuestion = (id, time) => ({ type: NEXT_QUESTION, id: id + 1, time });
+export const goToQuestion = (id) => ({ type: NEXT_QUESTION, id });
 
 export const setTimerValue = (time) => ({ type: SET_TIME_VALUE, time });
 

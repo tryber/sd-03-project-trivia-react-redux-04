@@ -6,7 +6,7 @@ import './CSS_Components/Feedback.css';
 const Feedback = () => (
   <div className="content">
     <div>
-      <Header />
+      <Header shouldShowScore />
     </div>
     <div className="feedback-component">
       <h1>This is the <strong>Feedback</strong> page</h1>

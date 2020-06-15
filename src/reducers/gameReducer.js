@@ -20,7 +20,7 @@ const gameReducer = (state = INITIAL_STATE, action) => {
         ...state,
         questionID: action.id,
         reveal: false,
-        time: action.time,
+        time: 30,
       };
     case ANSWERD_QUESTION:
     case STOP_TIME: clearInterval(state.id);

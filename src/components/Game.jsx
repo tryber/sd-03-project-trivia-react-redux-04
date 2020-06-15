@@ -9,13 +9,19 @@ import Alternative from './Alternative';
 import './CSS_Components/Game.css';
 import NextButton from './NextButton';
 
-import { takeStorageToken } from '../services/localStorageAPI';
-import fetchQuestions from '../actions/questionsAPI';
+import { takeStorageToken, sendScoreBoard } from '../services/localStorageAPI';
+import fetchQuestions, { prepareToRestart } from '../actions/questionsAPI';
+import { goToQuestion } from '../actions/game';
 
 class Game extends React.Component {
   componentDidMount() {
-    const { startGame } = this.props;
-    startGame(takeStorageToken());
+    this.props.startGame(takeStorageToken());
+  }
+
+  endGame() {
+    this.props.reset();
+    sendScoreBoard();
+    return <Redirect to="/feedback" />;
   }
 
   renderShuffledAlternatives() {
@@ -30,6 +36,7 @@ class Game extends React.Component {
         difficult={difficulty}
       />
     ));
+
     return [
       ...wrongBtns,
       <Alternative key={correct} type="correct-answer" text={correct} difficult={difficulty} />,
@@ -38,8 +45,8 @@ class Game extends React.Component {
 
   render() {
     const { loading, question } = this.props;
-    if (loading) return <h1 className="goo">Prepare-se</h1>;
-    if (question === null) return <Redirect to="/feedback" />;
+    if (loading) return <h1>Prepare-se</h1>;
+    else if (question === null) return this.endGame();
     return (
       <div className="game-content">
         <div>
@@ -66,6 +73,7 @@ Game.defaultProps = {
 };
 
 Game.propTypes = {
+  reset: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 
@@ -92,6 +100,7 @@ const mapStateToProps = ({ game: { questionID }, APIQuestions: { questions, load
 
 const mapDispatchToProps = (dispatch) => ({
   startGame: (token) => dispatch(fetchQuestions(token)),
+  reset: () => { dispatch(goToQuestion(0)); dispatch(prepareToRestart()); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

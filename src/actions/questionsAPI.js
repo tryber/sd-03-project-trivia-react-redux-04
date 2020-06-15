@@ -2,6 +2,7 @@ import {
   REQUEST_QUESTIONS,
   RECEIVE_QUESTIONS_SUCCESS,
   RECEIVE_QUESTIONS_FAILED,
+  RESTART,
 } from '../Types';
 import fetchQuestionsAPI from '../services/index';
 
@@ -33,5 +34,7 @@ export const fetchQuestions = (token) => (
       );
   }
 );
+
+export const prepareToRestart = () => ({ type: RESTART, questions: [], loading: true, errorMessage: '' });
 
 export default fetchQuestions;
