@@ -9,17 +9,12 @@ import Alternative from './Alternative';
 import NextButton from './NextButton';
 
 import { takeStorageToken, sendScoreBoard } from '../services/localStorageAPI';
-import fetchQuestions from '../actions/questionsAPI';
-
-const endGame = () => {
-  sendScoreBoard();
-  return <Redirect to="/feedback" />;
-};
+import fetchQuestions, { prepareToRestart } from '../actions/questionsAPI';
+import { goToQuestion } from '../actions/game';
 
 class Game extends React.Component {
   componentDidMount() {
-    const { startGame } = this.props;
-    startGame(takeStorageToken());
+    this.props.startGame(takeStorageToken());
   }
 
   renderShuffledAlternatives() {
@@ -41,10 +36,16 @@ class Game extends React.Component {
     ].sort(() => Math.floor(Math.random() * 3) - 1);
   }
 
+  endGame() {
+    this.props.reset();
+    sendScoreBoard();
+    return <Redirect to="/feedback" />;
+  };  
+
   render() {
     const { loading, question } = this.props;
     if (loading) return <h1>Prepare-se</h1>;
-    else if (question === null) return endGame();
+    else if (question === null) return this.endGame();
     return (
       <div>
         <div>
@@ -71,6 +72,7 @@ Game.defaultProps = {
 };
 
 Game.propTypes = {
+  reset: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 
@@ -97,6 +99,7 @@ const mapStateToProps = ({ game: { questionID }, APIQuestions: { questions, load
 
 const mapDispatchToProps = (dispatch) => ({
   startGame: (token) => dispatch(fetchQuestions(token)),
+  reset: () => { dispatch(goToQuestion(0)); dispatch(prepareToRestart()); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

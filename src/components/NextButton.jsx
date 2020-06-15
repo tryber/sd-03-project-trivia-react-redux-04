@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { goToNextQuestion } from '../actions/game';
+import { goToQuestion } from '../actions/game';
 
 class NextButton extends React.Component {
   render() {
@@ -27,7 +27,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  goToNext: (id) => (() => dispatch(goToNextQuestion(id))),
+  goToNext: (id) => (() => dispatch(goToQuestion(id + 1))),
 });
 
 NextButton.propTypes = {
