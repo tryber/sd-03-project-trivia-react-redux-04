@@ -1,0 +1,18 @@
+.config {
+  background-color: aqua;
+  border-radius: 24px;
+  margin: auto;
+  margin-top: 5%;
+  width: 50%;
+}
+
+.selects {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+
+.inpt {
+  border-radius: 10px;
+}

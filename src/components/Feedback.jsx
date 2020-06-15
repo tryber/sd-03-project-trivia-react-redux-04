@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import Header from './Header';
 import './CSS_Components/Feedback.css';
 
-const { score, assertions } = JSON.parse(localStorage.getItem('state')).player;
+const state = JSON.parse(localStorage.getItem('state'));
+const { score, assertions } = state.player;
 const feedbackText = () => {
   if (assertions < 3) return 'Podia ser melhor...';
   if (assertions >= 3) return 'Mandou bem!';

@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom';
 import Temporizador from './Temporizador';
 import Header from './Header';
 import Alternative from './Alternative';
+import './CSS_Components/Game.css';
 import NextButton from './NextButton';
 
 import { takeStorageToken, sendScoreBoard } from '../services/localStorageAPI';
@@ -47,20 +48,20 @@ class Game extends React.Component {
     if (loading) return <h1>Prepare-se</h1>;
     else if (question === null) return this.endGame();
     return (
-      <div>
+      <div className="game-content">
         <div>
           <Header />
         </div>
-        <div data-testid="question-category">{question.category}</div>
-        <div data-testid="question-text">{question.question}</div>
-        <div>
+        <div className="category" data-testid="question-category">{question.category}</div>
+        <div className="question" data-testid="question-text">{question.question}</div>
+        <div className="alternative">
           {this.renderShuffledAlternatives()}
         </div>
         <div>
           <NextButton />
         </div>
         <div>
-          <Temporizador />
+          <Temporizador status={question.question} />
         </div>
       </div>
     );
