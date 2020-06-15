@@ -2,6 +2,8 @@ import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import MD5 from 'crypto-js/md5';
 
+import './CSS_Components/Home.css';
+
 import {
   fetchToken,
   takeStorageToken as haveAnToken,
@@ -39,27 +41,34 @@ class Home extends React.Component {
       );
   }
 
-  render() {
-    const { shouldRedirect, error, name, email } = this.state;
-    if (error.length !== 0) return (<div>We failed</div>);
-    else if (shouldRedirect) return (<Redirect to="/game" />);
+  hashGravatar(email) {
+    this.handleChangeInput('email', email);
+    const hash = MD5(email).toString();
+    return this.setState({ gravatarEmail: `https://www.gravatar.com/avatar/${hash}` });
+  }
+
+  renderComponent() {
+    const { name, email } = this.state;
     return (
-      <div>
-        <h1>This is the <strong>Home</strong> page</h1>
-        <Link data-testid="btn-settings" to="/config">Configurações</Link>
+      <div className="card-body initial-page-game border-secondary">
+        <h1 className="card-header"><strong>MANIREACT</strong></h1>
+        <Link className="text-dark" data-testid="btn-settings" to="/config">Configurações</Link>
         <input
+          className="input-user"
           data-testid="input-player-name"
-          onChange={(e) => this.handleChangeInput('name', e.target.value)}
+          onChange={(e) => this.handleChangeInput('name', e.target.value.toLocaleUpperCase())}
           type="text"
           value={name}
         />
         <input
+          className="input-user"
           data-testid="input-gravatar-email"
           onChange={(e) => this.handleChangeInput('email', e.target.value)}
           type="email"
           value={email}
         />
         <button
+          className="btn-play btn-outline-dark btn-sm"
           disabled={(!name || !email)}
           data-testid="btn-play"
           onClick={this.prepareStartGame}
@@ -67,6 +76,17 @@ class Home extends React.Component {
         >
           Jogar
         </button>
+      </div>
+    );
+  }
+
+  render() {
+    const { shouldRedirect, error } = this.state;
+    if (error.length !== 0) return (<div>We failed</div>);
+    else if (shouldRedirect) return (<Redirect to="/game" />);
+    return (
+      <div>
+        {this.renderComponent()}
       </div>
     );
   }

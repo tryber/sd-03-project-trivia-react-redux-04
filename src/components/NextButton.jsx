@@ -6,14 +6,14 @@ import { goToQuestion } from '../actions/game';
 
 class NextButton extends React.Component {
   render() {
-    const { goToNext, reveal } = this.props;
-
+    const { goToNext, reveal, id } = this.props;
     if (!reveal) return null;
     return (
       <button
+        className="btn btn-outline-dark"
         data-testid="btn-next"
         type="button"
-        onClick={goToNext(this.props.id)}
+        onClick={goToNext(id)}
       >
         Próxima
       </button>
@@ -24,6 +24,7 @@ class NextButton extends React.Component {
 const mapStateToProps = (state) => ({
   id: state.game.questionID,
   reveal: state.game.reveal,
+  time: state.game.time,
 });
 
 const mapDispatchToProps = (dispatch) => ({

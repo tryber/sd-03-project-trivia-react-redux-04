@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './CSS_Components/Header.css';
 
 const Header = ({ shouldShowScore }) => {
   const { name, gravatarEmail, score } = JSON.parse(localStorage.getItem('state')).player;
   return (
-    <div>
+    <div className="card-body header-component border-secondary">
       <img
+        className="rounded-circle"
         alt="player"
         data-testid="header-profile-picture"
         src={gravatarEmail}
