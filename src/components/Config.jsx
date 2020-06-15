@@ -46,7 +46,7 @@ export class Config extends Component {
       <div className="config">
         <h1 data-testid="settings-title">Configurações</h1>
         <div className="selects">
-          <select className="inputs" onChange={(e) => this.setState({ category: e.target.value })}>
+          <select className="inpt" onChange={(e) => this.setState({ category: e.target.value })}>
             Categoria
         {category.map((e) => <option key={e}>{e}</option>)}
           </select>
@@ -54,7 +54,7 @@ export class Config extends Component {
             Dificuldade
         {difficulty.map((e) => <option key={e}>{e}</option>)}
           </select>
-          <select className="inputs" onChange={(e) => this.setState({ type: e.target.value })}>
+          <select className="inpt" onChange={(e) => this.setState({ type: e.target.value })}>
             Tipo
         {type.map((e) => <option key={e}>{e}</option>)}
           </select>
