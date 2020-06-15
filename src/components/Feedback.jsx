@@ -5,7 +5,7 @@ import Header from './Header';
 const Feedback = () => (
   <div>
     <div>
-      <Header />
+      <Header shouldShowScore />
     </div>
     <h1>This is the <strong>Feedback</strong> page</h1>
     <Link to="/">

@@ -49,7 +49,7 @@ class Game extends React.Component {
     return (
       <div>
         <div>
-          <Header />
+          <Header shouldShowScore={false} />
         </div>
         <div data-testid="question-category">{question.category}</div>
         <div data-testid="question-text">{question.question}</div>

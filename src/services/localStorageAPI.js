@@ -8,6 +8,13 @@ export const fetchToken = async () => (
 
 export const takeStorageToken = () => localStorage.getItem('token');
 
+export const createPlayerInLocalStorage = (user, gravatarEmail) => {
+  const memory = {
+    player: { name: user, assertions: 0, score: 0, gravatarEmail }
+  };
+  localStorage.setItem('state', JSON.stringify(memory));
+};
+
 export const setScore = (pts) => {
   const player = JSON.parse(localStorage.getItem('state')).player;
   const { score, assertions } = player;
