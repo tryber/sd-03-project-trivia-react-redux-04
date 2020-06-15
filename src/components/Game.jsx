@@ -46,6 +46,7 @@ class Game extends React.Component {
     const { loading, question } = this.props;
     if (loading) return <h1>Prepare-se</h1>;
     else if (question === null) return this.endGame();
+    console.log('ok');
     return (
       <div>
         <div>
