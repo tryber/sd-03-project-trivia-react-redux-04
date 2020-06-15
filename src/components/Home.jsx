@@ -50,7 +50,7 @@ class Home extends React.Component {
         <input
           className="input-user"
           data-testid="input-player-name"
-          onChange={(e) => this.handleChangeInput('name', e.target.value.toLocaleUpperCase())}
+          onChange={(e) => this.handleChangeInput('name', e.target.value)}
           type="text"
           value={name}
         />
