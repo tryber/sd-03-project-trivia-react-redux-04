@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { INITIAL_STORAGE_STATE } from '../services/localStorageAPI';
 import './CSS_Components/Header.css';
 
 const Header = ({ shouldShowScore }) => {
-  const { name, gravatarEmail, score } = JSON.parse(localStorage.getItem('state')).player;
+  const state = JSON.parse(localStorage.getItem('state')) || INITIAL_STORAGE_STATE;
+  const { name, gravatarEmail, score } = state.player;
   return (
     <div className="card-body header-component border-secondary">
       <img
