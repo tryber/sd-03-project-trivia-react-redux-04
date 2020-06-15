@@ -7,7 +7,6 @@ import { goToNextQuestion } from '../actions/game';
 class NextButton extends React.Component {
   render() {
     const { goToNext, reveal, time, id } = this.props;
-    console.log(this.props)
     if (!reveal) return null;
     return (
       <button
