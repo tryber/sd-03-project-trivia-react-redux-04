@@ -13,7 +13,6 @@ const feedbackText = (assertions) => {
 const Feedback = () => {
   const state = JSON.parse(localStorage.getItem('state')) || INITIAL_STORAGE_STATE;
   const { score, assertions } = state.player;
-  console.log(score)
   return (
     <div className="content">
       <div>
