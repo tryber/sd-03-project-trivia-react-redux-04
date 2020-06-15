@@ -5,19 +5,8 @@ import MD5 from 'crypto-js/md5';
 import {
   fetchToken,
   takeStorageToken as haveAnToken,
+  createPlayerInLocalStorage,
 } from '../services/localStorageAPI';
-
-const sendToUserLocalStorage = (user, gravatarHash) => {
-  const memory = {
-    player: {
-      name: user,
-      assertions: '',
-      score: '',
-      gravatarEmail: gravatarHash,
-    },
-  };
-  localStorage.setItem('state', JSON.stringify(memory));
-};
 
 class Home extends React.Component {
   constructor(props) {
@@ -29,31 +18,25 @@ class Home extends React.Component {
       error: '',
       gravatarEmail: '',
     };
-    this.takeToken = this.takeToken.bind(this);
+    this.prepareStartGame = this.prepareStartGame.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
   }
 
   handleChangeInput(name, value) {
-    this.setState({
-      [name]: value,
-    });
+    this.setState({ [name]: value });
   }
 
-  async takeToken() {
-    const { name, gravatarEmail } = this.state;
-    sendToUserLocalStorage(name, gravatarEmail);
+  async prepareStartGame() {
+    const { name, email } = this.state;
+    const hash = MD5(email).toString();
+    createPlayerInLocalStorage(name, `https://www.gravatar.com/avatar/${hash}`);
+
     if (haveAnToken()) return this.setState({ shouldRedirect: true });
     return fetchToken()
       .then(
         () => this.setState({ shouldRedirect: true }),
         (error) => this.setState({ error }),
       );
-  }
-
-  hashGravatar(email) {
-    this.handleChangeInput('email', email);
-    const hash = MD5(email).toString();
-    return this.setState({ gravatarEmail: `https://www.gravatar.com/avatar/${hash}` });
   }
 
   render() {
@@ -72,14 +55,14 @@ class Home extends React.Component {
         />
         <input
           data-testid="input-gravatar-email"
-          onChange={(e) => this.hashGravatar(e.target.value)}
+          onChange={(e) => this.handleChangeInput('email', e.target.value)}
           type="email"
           value={email}
         />
         <button
           disabled={(!name || !email)}
           data-testid="btn-play"
-          onClick={this.takeToken}
+          onClick={this.prepareStartGame}
           type="button"
         >
           Jogar

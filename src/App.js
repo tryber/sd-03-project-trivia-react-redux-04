@@ -24,7 +24,7 @@ export default function App() {
       </header>
       <Switch>
         <Route path="/ranking" component={Ranking} />
-        <Route path="/game" component={Game} />
+        <Route path="/game" render={() => <Game />} />
         <Route path="/feedback" component={Feedback} />
         <Route path="/config" component={Config} />
         <Route exact path="/" component={Home} />
