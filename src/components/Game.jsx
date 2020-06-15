@@ -17,6 +17,12 @@ class Game extends React.Component {
     this.props.startGame(takeStorageToken());
   }
 
+  endGame() {
+    this.props.reset();
+    sendScoreBoard();
+    return <Redirect to="/feedback" />;
+  }
+
   renderShuffledAlternatives() {
     const { question } = this.props;
     const { correct_answer: correct, incorrect_answers: wrongs, difficulty } = question;
@@ -36,12 +42,6 @@ class Game extends React.Component {
     ].sort(() => Math.floor(Math.random() * 3) - 1);
   }
 
-  endGame() {
-    this.props.reset();
-    sendScoreBoard();
-    return <Redirect to="/feedback" />;
-  };  
-
   render() {
     const { loading, question } = this.props;
     if (loading) return <h1>Prepare-se</h1>;
@@ -49,7 +49,7 @@ class Game extends React.Component {
     return (
       <div>
         <div>
-          <Header shouldShowScore={false} />
+          <Header />
         </div>
         <div data-testid="question-category">{question.category}</div>
         <div data-testid="question-text">{question.question}</div>
