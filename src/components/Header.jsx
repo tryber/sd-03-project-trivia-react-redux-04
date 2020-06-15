@@ -1,6 +1,6 @@
 import React from 'react';
-import './CSS_Components/Header.css';
 import PropTypes from 'prop-types';
+import './CSS_Components/Header.css';
 
 const Header = ({ shouldShowScore }) => {
   const { name, gravatarEmail, score } = JSON.parse(localStorage.getItem('state')).player;
