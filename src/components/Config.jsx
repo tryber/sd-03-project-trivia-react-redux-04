@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './CSS_Components/Config.css';
 
 const category = [
   'Categoria',
@@ -42,24 +43,29 @@ export class Config extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="config">
         <h1 data-testid="settings-title">Configurações</h1>
-        <div>
-          <select onChange={(e) => this.setState({ category: e.target.value })}>
+        <div className="selects">
+          <select className="inputs" onChange={(e) => this.setState({ category: e.target.value })}>
             Categoria
         {category.map((e) => <option key={e}>{e}</option>)}
           </select>
-          <select onChange={(e) => this.setState({ difficulty: e.target.value })}>
+          <select className="inpt" onChange={(e) => this.setState({ difficulty: e.target.value })}>
             Dificuldade
         {difficulty.map((e) => <option key={e}>{e}</option>)}
           </select>
-          <select onChange={(e) => this.setState({ type: e.target.value })}>
+          <select className="inputs" onChange={(e) => this.setState({ type: e.target.value })}>
             Tipo
         {type.map((e) => <option key={e}>{e}</option>)}
           </select>
         </div>
-        <button onClick={() => alert('Preencha seus dados na tela inicial!')}>Jogar</button>
-        <Link to="/">Início</Link>
+        <button
+          className="btn btn-play btn-outline-dark"
+          onClick={() => alert('Preencha seus dados na tela inicial!')}
+        >
+          Jogar
+        </button>
+        <Link className="text-dark" to="/">Início</Link>
       </div>
     );
   }

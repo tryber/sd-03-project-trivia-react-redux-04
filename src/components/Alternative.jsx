@@ -26,6 +26,7 @@ const evaluateAnswer = (type, time, difficult) => {
 
 const Alternative = ({ text, type, index, onAnswerd, reveal, time, difficult }) => (
   <button
+    className="btn btn-outline-success"
     disabled={reveal}
     style={reveal ? { border: `3px solid ${borderColor(type)}` } : {}}
     data-testid={`${type}${index !== null ? `-${index}` : ''}`}

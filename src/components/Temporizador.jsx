@@ -6,12 +6,21 @@ import { stopTime, setTimerValue, timeID } from '../actions/game';
 
 class Temporizador extends React.Component {
   componentDidMount() {
+    this.timerUpdate();
+  }
+
+  componentWillReceiveProps(status) {
+    if (this.props.status !== status.status) return this.timerUpdate();
+    return null;
+  }
+
+  timerUpdate() {
     const { setTime, timeOut, sendID } = this.props;
-    let { time } = this.props;
+    let sec = 30;
     const id = setInterval(() => {
-      if (time === 0) return timeOut();
-      time -= 1;
-      return setTime(time);
+      if (sec === 0) return timeOut();
+      sec -= 1;
+      return setTime(sec);
     }, 1000);
     sendID(id);
   }
@@ -31,6 +40,7 @@ Temporizador.propTypes = {
   timeOut: PropTypes.func.isRequired,
   setTime: PropTypes.func.isRequired,
   sendID: PropTypes.func.isRequired,
+  status: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({ game: { time } }) => ({ time });

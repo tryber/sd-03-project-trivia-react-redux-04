@@ -1,0 +1,27 @@
+.game-content {
+  background-color: aqua;
+  border-radius: 24px;
+  color: black;
+  margin: auto;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  width: 50%;
+}
+
+.category {
+  margin-bottom: 3%;
+  margin-top: 5%;
+}
+
+.question {
+  margin-bottom: 5%;
+}
+
+.alternative {
+  display: flex;
+  justify-content: space-around;
+}
+
+.goo {
+  color: bisque;
+}
