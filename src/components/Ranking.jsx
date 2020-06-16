@@ -10,7 +10,7 @@ const Ranking = () => {
   return (
     <div className="ranking">
       <h1 data-testid="ranking-title">This is the Ranking page</h1>
-      <table>
+      <table className="table table-striped">
         <tbody>
           {sortedRank.map(({ name, picture, score }, index) => (
             <RankPlayer key={name} url={picture} name={name} score={score} index={index} />

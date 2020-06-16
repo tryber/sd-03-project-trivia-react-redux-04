@@ -27,7 +27,7 @@ const Feedback = () => {
         </div>
         <Link to="/">
           <button
-            className="btn btn-outline-dark"
+            className="btn play btn-outline-dark"
             data-testid="btn-play-again"
           >
             Jogar Novamente
