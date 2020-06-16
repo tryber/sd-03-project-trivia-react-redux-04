@@ -45,12 +45,13 @@ class Home extends React.Component {
     const { name, email } = this.state;
     return (
       <div className="card-body initial-page-game border-secondary">
-        <h1 className="card-header"><strong>MANIREACT</strong></h1>
+        <h1 className="card-header"><strong>MINEREACT</strong></h1>
         <Link className="text-dark" data-testid="btn-settings" to="/config">Configurações</Link>
         <input
           className="input-user"
           data-testid="input-player-name"
           onChange={(e) => this.handleChangeInput('name', e.target.value)}
+          placeholder=" Nome"
           type="text"
           value={name}
         />
@@ -58,6 +59,7 @@ class Home extends React.Component {
           className="input-user"
           data-testid="input-gravatar-email"
           onChange={(e) => this.handleChangeInput('email', e.target.value)}
+          placeholder=" email"
           type="email"
           value={email}
         />
