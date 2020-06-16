@@ -1,12 +1,12 @@
 import {
   NEXT_QUESTION,
-  ANSWERD_QUESTION,
+  ANSWERED_QUESTION,
   STOP_TIME,
   SET_TIME_VALUE,
   SEND_TIME_ID,
 } from '../Types';
 
-export const onAnswerdQuestion = () => ({ type: ANSWERD_QUESTION });
+export const onAnsweredQuestion = () => ({ type: ANSWERED_QUESTION });
 
 export const stopTime = () => ({ type: STOP_TIME });
 

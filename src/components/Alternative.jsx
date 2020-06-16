@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { onAnswerdQuestion } from '../actions/game';
+import { onAnsweredQuestion } from '../actions/game';
 
 import { setScore } from '../services/localStorageAPI';
 
@@ -24,20 +24,20 @@ const evaluateAnswer = (type, time, difficult) => {
   if (type === 'correct-answer') setScore(10 + (toPoints(difficult) * time));
 };
 
-const Alternative = ({ text, type, index, onAnswerd, reveal, time, difficult }) => (
+const Alternative = ({ text, type, index, onAnswered, reveal, time, difficult }) => (
   <button
     className="btn btn-outline-success"
     disabled={reveal}
     style={reveal ? { border: `3px solid ${borderColor(type)}` } : {}}
     data-testid={`${type}${index !== null ? `-${index}` : ''}`}
-    onClick={() => { onAnswerd(); evaluateAnswer(type, time, difficult); }}
+    onClick={() => { onAnswered(); evaluateAnswer(type, time, difficult); }}
   >
     {text}
   </button>
 );
 
 Alternative.propTypes = {
-  onAnswerd: PropTypes.func.isRequired,
+  onAnswered: PropTypes.func.isRequired,
   reveal: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
@@ -56,7 +56,7 @@ const mapStateToProps = ({ game: { reveal, time } }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onAnswerd: () => dispatch(onAnswerdQuestion()), // time is stopped together
+  onAnswered: () => dispatch(onAnsweredQuestion()), // time is stopped together
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Alternative);

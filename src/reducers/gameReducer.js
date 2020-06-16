@@ -1,6 +1,6 @@
 import {
   NEXT_QUESTION,
-  ANSWERD_QUESTION,
+  ANSWERED_QUESTION,
   STOP_TIME,
   SET_TIME_VALUE,
   SEND_TIME_ID,
@@ -22,7 +22,7 @@ const gameReducer = (state = INITIAL_STATE, action) => {
         reveal: false,
         time: 30,
       };
-    case ANSWERD_QUESTION:
+    case ANSWERED_QUESTION:
     case STOP_TIME: clearInterval(state.id);
       return { ...state, reveal: true };
     case SET_TIME_VALUE: return { ...state, time: action.time };
