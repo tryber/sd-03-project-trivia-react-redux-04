@@ -23,11 +23,11 @@ export const receiveQuestionsFailure = (errorMessage) => ({
   errorMessage,
 });
 
-export const fetchQuestions = (token) => (
+export const fetchQuestions = (args) => (
   (dispatch) => {
     dispatch(requestQuestions());
 
-    return fetchQuestionsAPI(token)
+    return fetchQuestionsAPI(args)
       .then(
         (data) => dispatch(receiveQuestionsSuccess(data)),
         (message) => dispatch(receiveQuestionsFailure(message)),
