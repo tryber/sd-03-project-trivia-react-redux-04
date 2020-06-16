@@ -51,16 +51,14 @@ class Home extends React.Component {
           className="input-user"
           data-testid="input-player-name"
           onChange={(e) => this.handleChangeInput('name', e.target.value)}
-          placeholder=" Nome"
-          type="text"
+          placeholder=" Nome" type="text"
           value={name}
         />
         <input
           className="input-user"
           data-testid="input-gravatar-email"
           onChange={(e) => this.handleChangeInput('email', e.target.value)}
-          placeholder=" email"
-          type="email"
+          placeholder=" email" type="email"
           value={email}
         />
         <button
