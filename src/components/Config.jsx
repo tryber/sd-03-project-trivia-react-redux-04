@@ -9,7 +9,7 @@ export class Config extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: [{ name: 'Loading'}],
+      categories: [{ name: 'Loading' }],
       category: '',
       difficulty: '',
       type: '',
@@ -23,13 +23,18 @@ export class Config extends Component {
       .catch((error) => console.log('Take Categories failed', error));
   }
 
+
+  handleComeBack() {
+    const { category, difficulty, type } = this.state;
+    sessionStorage.setItem('config', JSON.stringify({ category, difficulty, type }));
+  }
+
   renderSelect(label, list, name) {
     const options = (
       label === 'Categoria'
         ? list.map((item) => <option value={item.id} key={item.name}>{item.name}</option>)
         : ['', ...list].map((item) => <option value={item} key={item}>{item}</option>)
     );
-
     return (
       <label htmlFor={name}>
         {label}
@@ -44,11 +49,6 @@ export class Config extends Component {
         </select>
       </label>
     );
-  }
-
-  handleComeBack() {
-    const { category, difficulty, type } = this.state;
-    sessionStorage.setItem('config', JSON.stringify({ category, difficulty, type }));
   }
 
   render() {
