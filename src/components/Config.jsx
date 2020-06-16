@@ -48,7 +48,7 @@ export class Config extends Component {
 
   handleComeBack() {
     const { category, difficulty, type } = this.state;
-    localStorage.setItem('config', JSON.stringify({ category, difficulty, type }));
+    sessionStorage.setItem('config', JSON.stringify({ category, difficulty, type }));
   }
 
   render() {

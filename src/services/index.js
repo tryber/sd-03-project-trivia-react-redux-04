@@ -1,11 +1,11 @@
+const makeURL = (base, args) => (
+  Object.entries(args).reduce((url, [setting, value]) => (
+    url += `&${setting}=${value}`
+  ), base)
+);
+
 const fetchQuestionsAPI = async (args, qnt = 5) => {
-  const { token, category, difficulty, type } = args;
-  let url = `https://opentdb.com/api.php?amount=${qnt}`;
-  if (category || difficulty || type) {
-    url += category ? `&category=${category}`: '';
-    url += difficulty ? `&difficulty=${difficulty}`: '';
-    url += type ? `&type=${type}`: '';
-  } else if (token) url += `&token=${token}`;
+  let url = makeURL(`https://opentdb.com/api.php?amount=${qnt}`, args);
 
   return fetch(url)
     .then((response) => { console.log(response);

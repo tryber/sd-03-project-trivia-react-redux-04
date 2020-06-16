@@ -35,4 +35,4 @@ export const sendScoreBoard = () => {
   );
 };
 
-export const takeStorageConfig = () => JSON.parse(localStorage.getItem('config'));
+export const takeStorageConfig = () => JSON.parse(sessionStorage.getItem('config'));
