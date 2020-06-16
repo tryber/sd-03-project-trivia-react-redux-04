@@ -1,7 +1,7 @@
 import {
   REQUEST_QUESTIONS,
   RECEIVE_QUESTIONS_SUCCESS,
-  RECEIVE_QUESTIONS_FAILED,
+  RECEIVE_QUESTIONS_FAILURE,
   RESTART,
 } from '../Types';
 import fetchQuestionsAPI from '../services/index';
@@ -17,8 +17,8 @@ export const receiveQuestionsSuccess = (data) => ({
   data,
 });
 
-export const receiveQuestionsFailed = (errorMessage) => ({
-  type: RECEIVE_QUESTIONS_FAILED,
+export const receiveQuestionsFailure = (errorMessage) => ({
+  type: RECEIVE_QUESTIONS_FAILURE,
   loading: false,
   errorMessage,
 });
@@ -30,7 +30,7 @@ export const fetchQuestions = (token) => (
     return fetchQuestionsAPI(token)
       .then(
         (data) => dispatch(receiveQuestionsSuccess(data)),
-        (message) => dispatch(receiveQuestionsFailed(message)),
+        (message) => dispatch(receiveQuestionsFailure(message)),
       );
   }
 );
