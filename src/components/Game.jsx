@@ -9,13 +9,13 @@ import Alternative from './Alternative';
 import './CSS_Components/Game.css';
 import NextButton from './NextButton';
 
-import { takeStorageToken, sendScoreBoard } from '../services/localStorageAPI';
+import { takeStorageToken, takeStorageConfig, sendScoreBoard } from '../services/localStorageAPI';
 import fetchQuestions, { prepareToRestart } from '../actions/questionsAPI';
 import { goToQuestion } from '../actions/game';
 
 class Game extends React.Component {
   componentDidMount() {
-    this.props.startGame(takeStorageToken());
+    this.props.startGame(takeStorageConfig() || { token: takeStorageToken() });
   }
 
   endGame() {
@@ -99,7 +99,7 @@ const mapStateToProps = ({ game: { questionID }, APIQuestions: { questions, load
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startGame: (token) => dispatch(fetchQuestions(token)),
+  startGame: (args) => dispatch(fetchQuestions(args)),
   reset: () => { dispatch(goToQuestion(0)); dispatch(prepareToRestart()); },
 });
 
