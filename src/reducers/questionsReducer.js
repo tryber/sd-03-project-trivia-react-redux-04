@@ -2,6 +2,7 @@ import {
   REQUEST_QUESTIONS,
   RECEIVE_QUESTIONS_SUCCESS,
   RECEIVE_QUESTIONS_FAILED,
+  RESTART,
 } from '../Types';
 
 const INITIAL_STATE = {
@@ -18,6 +19,7 @@ const questionsReducer = (state = INITIAL_STATE, action) => {
       return { ...state, loading: action.loading, questions: action.data.results };
     case RECEIVE_QUESTIONS_FAILED:
       return { ...state, loading: action.loading, errorMessage: action.errorMessage };
+    case RESTART: return INITIAL_STATE;
     default: return state;
   }
 };

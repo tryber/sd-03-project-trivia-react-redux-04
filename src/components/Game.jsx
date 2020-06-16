@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Temporizador from './Temporizador';
 import Header from './Header';
@@ -18,10 +18,8 @@ class Game extends React.Component {
     this.props.startGame(takeStorageConfig() || { token: takeStorageToken() });
   }
 
-  endGame() {
-    this.props.reset();
+  componentWillUnmount() {
     sendScoreBoard();
-    return <Redirect to="/feedback" />;
   }
 
   renderShuffledAlternatives() {
@@ -44,7 +42,7 @@ class Game extends React.Component {
   }
 
   render() {
-    const { loading, question } = this.props;
+    const { loading, question, questionsQnt, questionID } = this.props;
     if (loading) return <h1>Prepare-se</h1>;
     else if (question === null) return this.endGame();
     return (
@@ -58,7 +56,10 @@ class Game extends React.Component {
           {this.renderShuffledAlternatives()}
         </div>
         <div>
-          <NextButton />
+          {questionsQnt - 1 === questionID
+            ? <Link to="/feedback"><NextButton /></Link>
+            : <NextButton />
+          }
         </div>
         <div>
           <Temporizador status={question.question} />
@@ -76,6 +77,8 @@ Game.propTypes = {
   reset: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  questionsQnt: PropTypes.number.isRequired,
+  questionID: PropTypes.number.isRequired,
 
   question: PropTypes.shape({
     category: PropTypes.string.isRequired,
@@ -94,8 +97,10 @@ Game.propTypes = {
 };
 
 const mapStateToProps = ({ game: { questionID }, APIQuestions: { questions, loading } }) => ({
+  questionsQnt: questions.length,
   question: questions[questionID],
   loading,
+  questionID,
 });
 
 const mapDispatchToProps = (dispatch) => ({
