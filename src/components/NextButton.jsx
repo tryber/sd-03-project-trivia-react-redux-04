@@ -6,14 +6,14 @@ import { goToQuestion } from '../actions/game';
 
 class NextButton extends React.Component {
   render() {
-    const { goToNext, reveal, id } = this.props;
+    const { goToNext, reveal, id, questionsQuantity  } = this.props;
     if (!reveal) return null;
     return (
       <button
         className="btn btn-outline-dark"
         data-testid="btn-next"
         type="button"
-        onClick={goToNext(id)}
+        onClick={goToNext(id < questionsQuantity ? id : 0)}
       >
         Próxima
       </button>
