@@ -29,7 +29,7 @@ class Temporizador extends React.Component {
     const { time } = this.props;
     return (
       <div>
-        <h3>Tempo: {time}</h3>
+        <h3 className="time">Tempo: {time}</h3>
       </div>
     );
   }
