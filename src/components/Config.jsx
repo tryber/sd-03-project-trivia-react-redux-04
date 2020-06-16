@@ -1,71 +1,72 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './CSS_Components/Config.css';
 
-const category = [
-  'Categoria',
-  'General Knowledge',
-  'Entertainment: Books',
-  'Entertainment: Film',
-  'Entertainment: Music',
-  'Entertainment: Musicals & Theatres',
-  'Entertainment: Television',
-  'Entertainment: Video Games',
-  'Entertainment: Board Games',
-  'Science & Nature',
-  'Science: Computers',
-  'Science: Mathematics',
-  'Mythology',
-  'Sports',
-  'Geography',
-  'History',
-  'Politics',
-  'Art',
-  'Celebrities',
-  'Animals',
-  'Vehicles',
-  'Entertainment: Comics',
-  'Science: Gadgets',
-  'Entertainment: Japanese Anime & Manga',
-  'Entertainment: Cartoon & Animations',
-];
-const difficulty = ['Dificuldade', 'easy', 'medium', 'hard'];
-const type = ['Tipo', 'multiple', 'boolean'];
+import Header from './Header';
+
+import './CSS_Components/Config.css';
 
 export class Config extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      categories: [{ name: 'Loading'}],
       category: '',
       difficulty: '',
       type: '',
     };
   }
+
+  componentDidMount() {
+    fetch('https://opentdb.com/api_category.php')
+      .then((response) => response.json())
+      .then(({ trivia_categories: categories }) => this.setState({ categories }))
+      .catch((error) => console.log('Take Categories failed', error));
+  }
+
+  renderSelect(label, list, name) {
+    const options = (
+      label === 'Categoria'
+        ? list.map((item) => <option value={item.id} key={item.name}>{item.name}</option>)
+        : ['', ...list].map((item) => <option value={item} key={item}>{item}</option>)
+    );
+
+    return (
+      <label htmlFor={name}>
+        {label}
+        <select
+          className="inputs"
+          id={name}
+          onChange={({ target }) => this.setState({ [target.name]: target.value })}
+          name={name}
+          value={this.state[name]}
+        >
+          {options}
+        </select>
+      </label>
+    );
+  }
+
+  handleComeBack() {
+    const { category, difficulty, type } = this.state;
+    localStorage.setItem('config', JSON.stringify({ category, difficulty, type }));
+  }
+
   render() {
+    const { categories } = this.state;
     return (
       <div className="config">
+        <Header />
         <h1 data-testid="settings-title">Configurações</h1>
         <div className="selects">
-          <select className="inputs" onChange={(e) => this.setState({ category: e.target.value })}>
-            Categoria
-        {category.map((e) => <option key={e}>{e}</option>)}
-          </select>
-          <select className="inpt" onChange={(e) => this.setState({ difficulty: e.target.value })}>
-            Dificuldade
-        {difficulty.map((e) => <option key={e}>{e}</option>)}
-          </select>
-          <select className="inputs" onChange={(e) => this.setState({ type: e.target.value })}>
-            Tipo
-        {type.map((e) => <option key={e}>{e}</option>)}
-          </select>
+          {this.renderSelect('Categoria', categories, 'category')}
+          {this.renderSelect('Dificuldade', ['easy', 'medium', 'hard'], 'difficulty')}
+          {this.renderSelect('Tipo', ['multiple', 'boolean'], 'type')}
         </div>
-        <button
-          className="btn btn-play btn-outline-dark"
-          onClick={() => alert('Preencha seus dados na tela inicial!')}
-        >
-          Jogar
+        <button className="btn btn-play btn-outline-dark" onClick={() => this.handleComeBack()}>
+          <Link className="text-dark" to="/">
+            Início
+          </Link>
         </button>
-        <Link className="text-dark" to="/">Início</Link>
       </div>
     );
   }

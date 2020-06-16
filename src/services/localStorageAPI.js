@@ -27,9 +27,12 @@ export const setScore = (pts) => {
 export const sendScoreBoard = () => {
   const state = JSON.parse(localStorage.getItem('state')) || INITIAL_STORAGE_STATE;
   const { name, score, gravatarEmail } = state.player;
-  const ranking = JSON.parse(localStorage.getItem('ranking')) || [];
+  const ranking = (JSON.parse(localStorage.getItem('ranking')) || [])
+    .filter((player) => player.name !== name);
   localStorage.setItem(
     'ranking',
     JSON.stringify([...ranking, { name, score, picture: gravatarEmail }]),
   );
 };
+
+export const takeStorageConfig = () => JSON.parse(localStorage.getItem('config'));
