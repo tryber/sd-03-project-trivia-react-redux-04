@@ -4,6 +4,7 @@ import {
   STOP_TIME,
   SET_TIME_VALUE,
   SEND_TIME_ID,
+  RESTART,
 } from '../Types';
 
 const INITIAL_STATE = {
@@ -15,6 +16,7 @@ const INITIAL_STATE = {
 
 const gameReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case RESTART: return INITIAL_STATE;
     case NEXT_QUESTION:
       return {
         ...state,
