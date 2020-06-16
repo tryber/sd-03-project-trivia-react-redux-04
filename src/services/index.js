@@ -1,7 +1,8 @@
 const makeURL = (base, args) => (
   Object.entries(args).reduce(
-    (url, [setting, value]) => (url + `&${setting}=${value}`
-  ), base)
+    (url, [setting, value]) => `${url}&${setting}=${value}`,
+    base
+  )
 );
 
 const fetchQuestionsAPI = async (args, qnt = 5) => {
