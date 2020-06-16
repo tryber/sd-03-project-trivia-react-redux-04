@@ -39,7 +39,7 @@ export class Config extends Component {
       <label htmlFor={name}>
         {label}
         <select
-          className="inputs"
+          className="inpt"
           id={name}
           onChange={({ target }) => this.setState({ [target.name]: target.value })}
           name={name}

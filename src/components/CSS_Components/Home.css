@@ -38,3 +38,84 @@
     transform: translate3d(4px, 0, 0);
   }
 }
+
+@media screen and (min-width: 415px) and (max-width: 800px) {
+  .initial-page-game {
+    width: 60%;
+  }
+
+  .card-header {
+    height: 10vmin;
+    margin-bottom: 3vmin;
+    text-align: center;
+  }
+
+  .btn-play {
+    border-radius: 6px;
+    margin: auto;
+    margin-top: 5%;
+    width: 84%;
+  }
+
+  .input-user {
+    border-radius: 500px;
+    height: 30px;
+    margin-bottom: 2%;
+    margin-top: 3px;
+  }
+
+}
+
+@media screen and (max-width: 414px) and (max-width: 800px) {
+  .initial-page-game {
+    width: 60%;
+  }
+
+  .card-header {
+    font-size: 30px;
+    height: 10vmin;
+    margin-bottom: 3vmin;
+    text-align: center;
+  }
+
+  .btn-play {
+    border-radius: 6px;
+    margin: auto;
+    margin-top: 5%;
+    width: 84%;
+  }
+
+  .input-user {
+    border-radius: 500px;
+    height: 20px;
+    margin-bottom: 2%;
+    margin-top: 3px;
+  }
+
+}
+
+@media screen and (min-width: 360px) and (max-width: 376px) {
+
+  .card-header {
+    font-size: 26px;
+  }
+
+  .btn-play {
+    border-radius: 6px;
+    height: 30px;
+    margin: auto;
+    margin-top: 5%;
+    width: 75%;
+  }
+
+  .text-dark {
+    font-size: 12px;
+  }
+
+  .input-user {
+    border-radius: 500px;
+    height: 20px;
+    margin-bottom: 2%;
+    margin-top: 3px;
+  }
+}

@@ -22,12 +22,14 @@ const Feedback = () => {
         <h1><strong>Feedback</strong></h1>
         <div>
           <h3 data-testid="feedback-text">{feedbackText(assertions)}</h3>
-          <h4>Pontuação <span data-testid="feedback-total-score">{score}</span></h4>
+          <h4 className="total-score">
+            Pontuação <span data-testid="feedback-total-score">{score}</span>
+          </h4>
           <h4>Acertos <span data-testid="feedback-total-question">{assertions}</span></h4>
         </div>
         <Link to="/">
           <button
-            className="btn btn-outline-dark"
+            className="btn play btn-outline-dark"
             data-testid="btn-play-again"
           >
             Jogar Novamente

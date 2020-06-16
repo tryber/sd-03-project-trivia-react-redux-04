@@ -13,12 +13,72 @@
   background-color: aqua;
   border: groove;
   border-radius: 24px;
+  box-shadow: 9px 7px 5px rgba(107, 83, 50, 0.77);
   margin: auto;
-  margin-top: 5%;
+  margin-top: 2%;
+  padding: 10px 10px 0;
   width: 40%;
+}
+
+.total-score {
+  margin-bottom: 2px;
 }
 
 .btn {
   border-radius: 10px;
   margin-bottom: 10px;
+}
+
+.play {
+  border-radius: 10px;
+  margin-bottom: 10px;
+  animation: shake infinite 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@media screen and (min-width: 360px) and (max-width: 376px) {
+
+  h1 {
+    font-size: 25px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 15px;
+  }
+
+  .btn {
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .header-component {
+    height: 66px;
+  }
+
+  .rounded-circle {
+    width: 25%;
+  }
+}
+
+
+@media screen and (max-width: 414px) and (max-width: 800px) {
+
+  h1 {
+    font-size: 25px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 15px;
+  }
+
+  .rounded-circle {
+    width: 33%;
+  }
 }

@@ -52,6 +52,9 @@ class Game extends React.Component {
         <div>
           <Header />
         </div>
+        <div>
+          <Temporizador status={question.question} />
+        </div>
         <div className="category" data-testid="question-category">{question.category}</div>
         <div className="question" data-testid="question-text">{question.question}</div>
         <div className="alternative">
@@ -59,9 +62,6 @@ class Game extends React.Component {
         </div>
         <div>
           <NextButton />
-        </div>
-        <div>
-          <Temporizador status={question.question} />
         </div>
       </div>
     );
